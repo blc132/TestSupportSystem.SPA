@@ -1,28 +1,56 @@
-import React, { Component } from 'react';
+import React, { useContext, useEffect, Fragment } from 'react';
+import { RootStoreContext } from '../stores/rootStore';
+import LoadingComponent from './LoadingComponent';
+import { ToastContainer } from 'react-toastify';
+import NavBar from '../features/nav/NavBar';
+import HomePage from '../features/home/HomePage';
+import ModalContainer from '../common/modals/ModalContainer';
+import {
+  Route,
+  withRouter,
+  RouteComponentProps,
+  Switch
+} from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+import { Container } from 'semantic-ui-react';
+import PrivateRoute from './PrivateRoute';
+import NotFound from './NotFound';
 
-class App extends Component {
-  state = {
-    values: []
-  } 
-  componentDidMount() {
-    this.setState({
-      values: [{id: 1,  name: "Value 101"}, {id: 2, name: "Value 102"}]
-    })
-  }
+const App: React.FC<RouteComponentProps> = ({ location }) => {
+  const rootStore = useContext(RootStoreContext);
+  const { setAppLoaded, token, appLoaded } = rootStore.commonStore;
+  const { getUser } = rootStore.userStore;
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <ul>
-            {this.state.values.map((value: any) => (
-              <li>{value.name}</li>
-            ))}
-          </ul>
-        </header>
-      </div>
-    );
-  }
-}
+  useEffect(() => {
+    if (token) {
+      getUser().finally(() => setAppLoaded())
+    } else {
+      setAppLoaded();
+    }
+  }, [getUser, setAppLoaded, token])
 
-export default App;
+  if (!appLoaded) return <LoadingComponent content='Ładowanie...' />
+
+  return (
+    <Fragment>
+      <ModalContainer />
+      <ToastContainer position='bottom-right' />
+      <Route exact path='/' component={HomePage} />
+      <Route
+        path={'/(.+)'}
+        render={() => (
+          <Fragment>
+            <NavBar />
+            <Container style={{ marginTop: '7em' }}>
+              <Switch>
+                <Route component={NotFound} />
+              </Switch>
+            </Container>
+          </Fragment>
+        )}
+      />
+    </Fragment>
+  );
+};
+export default withRouter(observer(App));
+
