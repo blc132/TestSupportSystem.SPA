@@ -2,8 +2,8 @@ import React, { useContext, useEffect, Fragment } from 'react';
 import { RootStoreContext } from '../stores/rootStore';
 import LoadingComponent from './LoadingComponent';
 import { ToastContainer } from 'react-toastify';
-import NavBar from '../features/nav/NavBar';
-import HomePage from '../features/home/HomePage';
+import NavBar from '../../features/nav/NavBar';
+import HomePage from '../../features/home/HomePage';
 import ModalContainer from '../common/modals/ModalContainer';
 import {
   Route,

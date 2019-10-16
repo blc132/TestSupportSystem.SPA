@@ -1,7 +1,7 @@
 import React, { useContext, Fragment } from 'react';
 import { Container, Segment, Header, Button, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import { RootStoreContext } from '../../stores/rootStore';
+import { RootStoreContext } from '../../app/stores/rootStore';
 
 const HomePage = () => {
   const token = window.localStorage.getItem('jwt');
