@@ -12,4 +12,6 @@ export interface IUserFormValues {
     firstName?: string;
     lastName?: string;
     userName?: string;
+    role?: string;
+    rolePassword?: string;
 }

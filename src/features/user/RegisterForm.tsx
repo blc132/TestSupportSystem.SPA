@@ -7,6 +7,9 @@ import { IUserFormValues } from '../../app/models/user';
 import { FORM_ERROR } from 'final-form';
 import { combineValidators, isRequired, createValidator, composeValidators } from 'revalidate';
 import ErrorMessage from '../../app/common/form/ErrorMessage';
+import { roles } from '../../app/common/options/roleOptions';
+import SelectInput from '../../app/common/form/SelectInput';
+
 
 const isValidEmail = createValidator(
     (message: any) => (value: string) => {
@@ -32,6 +35,7 @@ const validate = combineValidators({
     userName: isRequired({ message: 'Wymagane' }),
     firstName: isRequired({ message: 'Wymagane' }),
     lastName: isRequired({ message: 'Wymagane' }),
+    role: isRequired({message: "Wymagane"}),
 
     password: composeValidators(
         isRequired({ message: 'Wymagane' }),
@@ -88,6 +92,18 @@ const RegisterForm = () => {
                             name='password'
                             component={TextInput}
                             placeholder='Hasło'
+                            type='password'
+                        />
+                        <Field
+                            component={SelectInput}
+                            options={roles}
+                            name='role'
+                            placeholder='Rola'
+                        />
+                        <Field
+                            name='rolePassword'
+                            component={TextInput}
+                            placeholder='Hasło do roli'
                             type='password'
                         />
                         {submitError && !dirtySinceLastSubmit && (
