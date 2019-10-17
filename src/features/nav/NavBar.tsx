@@ -3,10 +3,12 @@ import { Menu, Container, Dropdown } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { NavLink, Link } from 'react-router-dom';
 import { RootStoreContext } from '../../app/stores/rootStore';
+import CourseForm from '../course/CourseForm';
 
 const NavBar: React.FC = () => {
     const rootStore = useContext(RootStoreContext);
     const { user, logout } = rootStore.userStore;
+    const { openModal } = rootStore.modalStore
     return (
         <Menu fixed='top' inverted>
             <Container>
@@ -17,7 +19,7 @@ const NavBar: React.FC = () => {
                 <Menu.Item >
                     <Dropdown pointing='top left' text="Kursy">
                         <Dropdown.Menu>
-                            <Dropdown.Item text='Dodaj' icon='plus' />
+                            <Dropdown.Item text='Dodaj' icon='plus' onClick={() => openModal(<CourseForm />)} />
                             <Dropdown.Item text='Przeglądaj' icon='list' />
                         </Dropdown.Menu>
                     </Dropdown>

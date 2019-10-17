@@ -2,6 +2,7 @@ import axios, { AxiosResponse } from 'axios';
 import { history } from '../..';
 import { toast } from 'react-toastify';
 import { IUser, IUserFormValues } from '../models/user';
+import { ICourse, ICourseFormValues } from '../models/course';
 
 axios.defaults.baseURL = "http://localhost:53547/api"
 
@@ -63,7 +64,7 @@ const requests = {
       .then(responseBody),
 };
 
-const User = {
+const Users = {
   current: (): Promise<IUser> => requests.get('/user'),
   login: (user: IUserFormValues): Promise<IUser> =>
     requests.post(`/user/login`, user),
@@ -71,6 +72,11 @@ const User = {
     requests.post(`/user/register`, user)
 };
 
+const Courses = {
+  create: (course: ICourse) => requests.post('/course', course),
+}
+
 export default {
-  User,
+  Users,
+  Courses
 };
