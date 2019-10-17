@@ -3,12 +3,13 @@ import { Container, Segment, Header, Button, Image } from 'semantic-ui-react';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import LoginForm from '../user/LoginForm';
 import RegisterForm from '../user/RegisterForm';
+import './LandingPage.css';
 
 const LandingPage = () => {
   const rootStore = useContext(RootStoreContext);
   const { openModal } = rootStore.modalStore;
   return (
-    <Segment inverted textAlign='center' vertical className='masthead'>
+    <Segment inverted textAlign='center' vertical className='masthead-landing'>
       <Container text>
         <Header as='h1' inverted>
           <Image

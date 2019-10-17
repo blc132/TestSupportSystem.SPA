@@ -1,0 +1,26 @@
+/*landing page styles*/
+
+.masthead-landing {
+    display: flex;
+    align-items: center;
+    background: rgb(81,121,61);
+    background: linear-gradient(135deg, rgba(255,121,61,1) 0%, rgba(45,129,255,1) 48%, rgba(32,86,255,0.9780287114845938) 100%)!important;
+    height: 100vh;
+  }
+  
+  .masthead-landing .ui.menu .ui.button,
+  .ui.menu a.ui.inverted.button {
+    margin-left: 0.5em;
+  }
+  
+  .masthead-landing h1.ui.header {
+    font-size: 4em;
+    font-weight: normal;
+  }
+  
+  .masthead-landing h2 {
+    font-size: 1.7em;
+    font-weight: normal;
+  }
+  
+  /*end landing page styles*/

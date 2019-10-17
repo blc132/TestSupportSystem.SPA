@@ -37,7 +37,6 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
       <ModalContainer />
       <ToastContainer position='bottom-right' />
       <Route exact path='/' component={LandingPage} />
-      <Route exact path='/home' component={HomePage} />
       <Route
         path={'/(.+)'}
         render={() => (
@@ -45,6 +44,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <NavBar />
             <Container style={{ marginTop: '7em' }}>
               <Switch>
+                <Route exact path='/home' component={HomePage} />
                 <Route component={NotFound} />
               </Switch>
             </Container>
