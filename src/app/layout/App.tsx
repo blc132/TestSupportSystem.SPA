@@ -3,6 +3,7 @@ import { RootStoreContext } from '../stores/rootStore';
 import LoadingComponent from './LoadingComponent';
 import { ToastContainer } from 'react-toastify';
 import NavBar from '../../features/nav/NavBar';
+import LandingPage from '../../features/landing/LandingPage';
 import HomePage from '../../features/home/HomePage';
 import ModalContainer from '../common/modals/ModalContainer';
 import {
@@ -35,7 +36,8 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
     <Fragment>
       <ModalContainer />
       <ToastContainer position='bottom-right' />
-      <Route exact path='/' component={HomePage} />
+      <Route exact path='/' component={LandingPage} />
+      <Route exact path='/home' component={HomePage} />
       <Route
         path={'/(.+)'}
         render={() => (
@@ -53,4 +55,3 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
   );
 };
 export default withRouter(observer(App));
-
