@@ -43,7 +43,7 @@ const LoginForm = () => {
           <Field
             name='password'
             component={TextInput}
-            placeholder='Password'
+            placeholder='Hasło'
             type='password'
           />
           {submitError && !dirtySinceLastSubmit && (
