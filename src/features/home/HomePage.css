@@ -23,5 +23,17 @@
     font-size: 1.7em;
     font-weight: normal;
   }
+
+  .img-home{
+     border-radius: 5vh;
+  }
+
+  .column-home{
+    display: flex;
+    align-items: center;
+  }
   
+  .column-home-desc{
+    margin-top: 5vh;
+  }
   /*end landing page styles*/

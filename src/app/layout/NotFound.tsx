@@ -10,8 +10,8 @@ const NotFound = () => {
                 Upss - coś poszło nie tak!
             </Header>
             <Segment.Inline>
-                <Button as={Link} to='/courses' primary>
-                    Wróć do kursów
+                <Button as={Link} to='/home' primary>
+                    Wróć na stronę główną
                 </Button>
             </Segment.Inline>
         </Segment>

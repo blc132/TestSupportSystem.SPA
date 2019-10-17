@@ -5,9 +5,8 @@ import TextInput from '../../app/common/form/TextInput';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import { IUserFormValues } from '../../app/models/user';
 import { FORM_ERROR } from 'final-form';
-import { combineValidators, isRequired, createValidator, composeValidators, hasLengthGreaterThan } from 'revalidate';
+import { combineValidators, isRequired, createValidator, composeValidators } from 'revalidate';
 import ErrorMessage from '../../app/common/form/ErrorMessage';
-import { any } from 'prop-types';
 
 const isValidEmail = createValidator(
     (message: any) => (value: string) => {
