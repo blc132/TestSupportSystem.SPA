@@ -3,15 +3,11 @@ body {
 }
 
 .ui.inverted.top.fixed.menu {
-  background-image: linear-gradient(
-    135deg,
-    rgb(24, 42, 115) 0%,
-    rgb(33, 138, 174) 69%,
-    rgb(32, 167, 172) 89%
-  ) !important;
+  background: rgb(81,121,61);
+  background: linear-gradient(135deg, rgba(81,121,61,1) 0%, rgba(45,129,35,1) 48%, rgba(32,86,255,0.9780287114845938) 100%)!important;
 }
 
-/*home page styles*/
+/*landing page styles*/
 
 .masthead {
   display: flex;
