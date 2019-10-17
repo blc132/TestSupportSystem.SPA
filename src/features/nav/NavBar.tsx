@@ -14,7 +14,46 @@ const NavBar: React.FC = () => {
                     <img src='/assets/logo.png' alt='logo' style={{ marginRight: 10 }} />
                     SysEgz
         </Menu.Item>
-                <Menu.Item name='Kursy' as={NavLink} to='/courses' />
+                <Menu.Item >
+                    <Dropdown pointing='top left' text="Kursy">
+                        <Dropdown.Menu>
+                            <Dropdown.Item text='Dodaj' icon='plus' />
+                            <Dropdown.Item text='Przeglądaj' icon='list' />
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </Menu.Item>
+                <Menu.Item >
+                    <Dropdown pointing='top left' text="Zadania">
+                        <Dropdown.Menu>
+                            <Dropdown.Item text='Dodaj' icon='plus' />
+                            <Dropdown.Item text='Przeglądaj' icon='list' />
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </Menu.Item>
+                <Menu.Item >
+                    <Dropdown pointing='top left' text="Grupy">
+                        <Dropdown.Menu>
+                            <Dropdown.Item text='Dodaj' icon='plus' />
+                            <Dropdown.Item text='Przeglądaj' icon='list' />
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </Menu.Item>
+                <Menu.Item >
+                    <Dropdown pointing='top left' text="Studenci">
+                        <Dropdown.Menu>
+                            <Dropdown.Item text='Dodaj' icon='plus' />
+                            <Dropdown.Item text='Przeglądaj' icon='list' />
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </Menu.Item>
+                <Menu.Item >
+                    <Dropdown pointing='top left' text="Prowadzący">
+                        <Dropdown.Menu>
+                            <Dropdown.Item text='Dodaj' icon='plus' />
+                            <Dropdown.Item text='Przeglądaj' icon='list' />
+                        </Dropdown.Menu>
+                    </Dropdown>
+                </Menu.Item>
                 {user && (
                     <Menu.Item position='right'>
                         <Dropdown pointing='top left' text={user.userName}>
