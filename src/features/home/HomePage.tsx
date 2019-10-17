@@ -2,11 +2,13 @@ import React, { useContext, Fragment } from 'react';
 import { Container, Segment, Header, Button, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { RootStoreContext } from '../../app/stores/rootStore';
+import LoginForm from '../../features/user/LoginForm';
 
 const HomePage = () => {
   const token = window.localStorage.getItem('jwt');
   const rootStore = useContext(RootStoreContext);
   const { user, isLoggedIn } = rootStore.userStore;
+  const {openModal} = rootStore.modalStore;
   return (
     <Segment inverted textAlign='center' vertical className='masthead'>
       <Container text>
@@ -21,22 +23,22 @@ const HomePage = () => {
         </Header>
         {isLoggedIn && user && token ? (
           <Fragment>
-            <Header as='h2' inverted content={`Witaj z powrotem ${user.username}`} />
+            <Header as='h2' inverted content={`Witaj z powrotem ${user.userName}`} />
             <Button as={Link} to='/courses' size='huge' inverted>
               Kursy!
             </Button>
           </Fragment>
         ) : (
-          <Fragment>
-          <Header as='h2' inverted content={`Witaj w SysEgz`} />
-          <Button size='huge' inverted>
-            Logowanie
+            <Fragment>
+              <Header as='h2' inverted content={`Witaj w SysEgz`} />
+              <Button onClick={() => openModal(<LoginForm />)} size='huge' inverted>
+                Logowanie
           </Button>
-          <Button size='huge' inverted>
-            Rejestracja
+              <Button size='huge' inverted>
+                Rejestracja
           </Button>
-        </Fragment>
-        )}
+            </Fragment>
+          )}
       </Container>
     </Segment>
   );

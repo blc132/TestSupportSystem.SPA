@@ -1,5 +1,5 @@
 export interface IUser {
-    username: string;
+    userName: string;
     firstName: string;
     lastName: string;
     email: string;
@@ -11,5 +11,5 @@ export interface IUserFormValues {
     password: string;
     firstName?: string;
     lastName?: string;
-    username?: string;
+    userName?: string;
 }

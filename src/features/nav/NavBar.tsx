@@ -17,11 +17,11 @@ const NavBar: React.FC = () => {
                 <Menu.Item name='Kursy' as={NavLink} to='/courses' />
                 {user && (
                     <Menu.Item position='right'>
-                        <Dropdown pointing='top left' text={user.username}>
+                        <Dropdown pointing='top left' text={user.userName}>
                             <Dropdown.Menu>
                                 <Dropdown.Item
                                     as={Link}
-                                    to={`/profile/${user.username}`}
+                                    to={`/profile/${user.userName}`}
                                     text='Mój profil'
                                     icon='user'
                                 />
