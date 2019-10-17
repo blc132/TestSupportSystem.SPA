@@ -3,7 +3,7 @@ import { history } from '../..';
 import { toast } from 'react-toastify';
 import { IUser, IUserFormValues } from '../models/user';
 
-axios.defaults.baseURL = process.env.REACT_APP_API_URL;
+axios.defaults.baseURL = "http://localhost:53547/api"
 
 axios.interceptors.request.use(
   config => {
@@ -18,7 +18,7 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(undefined, error => {
   if (error.message === 'Network Error' && !error.response) {
-    toast.error('Network error - make sure API is running!');
+    toast.error('Błąd sieci - upewnij się, że API działa!');
   }
   const { status, data, config, headers } = error.response;
   if (status === 404) {
@@ -27,7 +27,7 @@ axios.interceptors.response.use(undefined, error => {
   if (status === 401 && headers['www-authenticate'] === 'Bearer error="invalid_token", error_description="The token is expired"') {
     window.localStorage.removeItem('jwt');
     history.push('/')
-    toast.info('Your session has expired, please login again')
+    toast.info('Twoja sesja wygasła, zaloguj się ponownie.')
   }
   if (
     status === 400 &&
@@ -37,7 +37,7 @@ axios.interceptors.response.use(undefined, error => {
     history.push('/notfound');
   }
   if (status === 500) {
-    toast.error('Server error - check the terminal for more info!');
+    toast.error('Błąd serwera - sprawdź konsolę, aby uzyskać więcej informacji!');
   }
   throw error.response;
 });
