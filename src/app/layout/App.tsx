@@ -18,6 +18,7 @@ import PrivateRoute from './PrivateRoute';
 import NotFound from './NotFound';
 import GroupList from '../../features/group/dashboard/GroupList'
 import GroupDetails from '../../features/group/details/GroupDetails'
+import CourseList from '../../features/course/dashboard/CourseList'
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -48,6 +49,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
               <Switch>
                 <Route exact path='/home' component={HomePage} />
                 <Route exact path='/groups' component={GroupList} />
+                <Route exact path='/courses' component={CourseList} />
                 <Route exact path='/group/:id' component={GroupDetails}/>
                 <Route component={NotFound} />
               </Switch>

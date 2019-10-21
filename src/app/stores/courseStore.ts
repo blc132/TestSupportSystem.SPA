@@ -15,7 +15,9 @@ export default class CourseStore {
 
     @observable courseOptions: ICourseOption[] = [];
     @observable course: ICourse | null = null;
+    @observable courses: ICourse[] = [];
     @observable submitting = false;
+    @observable loadingInitial = false;
 
 
     @action createCourse = async (course: ICourse) => {
@@ -26,6 +28,9 @@ export default class CourseStore {
             this.submitting = false;
           });
           this.rootStore.modalStore.closeModal();
+          runInAction('adding group to list', () => {
+            this.courses = [...this.courses, course ]
+          });
           toast.info('Dodano kurs');
         } catch (error) {
           runInAction('create course error', () => {
@@ -47,6 +52,21 @@ export default class CourseStore {
           });
         } catch (error) {
           runInAction('load courses options error', () => {
+          });
+        }
+      };
+
+      @action loadCourses = async () => {
+        try {
+          const courses = await agent.Courses.list();
+          runInAction('loading courses', () => {
+            courses.forEach(course => {
+              if(this.courses.find(x => x.name == course.name) == null)              
+                this.courses = [...this.courses, course ]
+            });
+          });
+        } catch (error) {
+          runInAction('load courses error', () => {
           });
         }
       };
