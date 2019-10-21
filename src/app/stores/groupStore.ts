@@ -4,7 +4,7 @@ import { ICourse } from '../models/course'
 import agent from '../api/agent';
 import { toast } from 'react-toastify';
 import { history } from '../..';
-import { IGroup, IGroupFormValues } from '../models/group';
+import { IGroup, IGroupFormValues, IGroupDetails } from '../models/group';
 
 
 
@@ -15,8 +15,10 @@ export default class GroupStore {
     }
 
     @observable group: IGroup | null = null;
+    @observable groupDetails: IGroupDetails | null = null;
     @observable groups: IGroup[] = [];
     @observable submitting = false;
+    @observable loadingInitial = false;
 
 
     @action createGroup = async (group: IGroupFormValues) => {
@@ -57,5 +59,18 @@ export default class GroupStore {
           });
         }
       };
+
+      @action loadGroupDetails = async (id: string) => {
+        try {
+          const group = await agent.Groups.getById(id);
+          runInAction('loading group', () => {
+              this.groupDetails = group;
+          });
+        } catch (error) {
+          runInAction('load group error', () => {
+          });
+        }
+      };
 }
+
 

@@ -3,7 +3,7 @@ import { history } from '../..';
 import { toast } from 'react-toastify';
 import { IUser, IUserFormValues } from '../models/user';
 import { ICourse } from '../models/course';
-import { IGroupFormValues, IGroup } from '../models/group';
+import { IGroupFormValues, IGroup, IGroupDetails } from '../models/group';
 
 axios.defaults.baseURL = "https://localhost:44323/api"
 
@@ -82,6 +82,7 @@ const Groups = {
   create: (group: IGroupFormValues) => requests.post('/group', group),
   list: (): Promise<IGroup[]> => requests.get('/group'),
   getByName: (name: string): Promise<IGroup> => requests.get('/group/getbyname/' + name),
+  getById: (id: string): Promise<IGroupDetails> => requests.get('/group/' + id),
 }
 
 export default {
