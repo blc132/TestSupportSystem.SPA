@@ -1,6 +1,7 @@
 import UserStore from './userStore';
 import CommonStore from './commonStore';
 import ModalStore from './modalStore';
+import GroupStore from './groupStore';
 import { createContext } from 'react';
 import { configure } from 'mobx';
 import CourseStore from './courseStore';
@@ -12,12 +13,14 @@ export class RootStore {
     commonStore: CommonStore;
     modalStore: ModalStore;
     courseStore: CourseStore;
+    groupStore: GroupStore;
 
     constructor() {
         this.userStore = new UserStore(this);
         this.commonStore = new CommonStore(this);
         this.modalStore = new ModalStore(this);
         this.courseStore = new CourseStore(this);
+        this.groupStore = new GroupStore(this);
     }
 }
 

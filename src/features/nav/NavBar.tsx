@@ -4,6 +4,7 @@ import { observer } from 'mobx-react-lite';
 import { NavLink, Link } from 'react-router-dom';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import CourseForm from '../course/CourseForm';
+import GroupForm from '../group/GroupForm';
 
 const NavBar: React.FC = () => {
     const rootStore = useContext(RootStoreContext);
@@ -27,7 +28,7 @@ const NavBar: React.FC = () => {
                 <Menu.Item >
                     <Dropdown pointing='top left' text="Zadania">
                         <Dropdown.Menu>
-                            <Dropdown.Item text='Dodaj' icon='plus' />
+                            <Dropdown.Item text='Dodaj' icon='plus'  />
                             <Dropdown.Item text='Przeglądaj' icon='list' />
                         </Dropdown.Menu>
                     </Dropdown>
@@ -35,7 +36,7 @@ const NavBar: React.FC = () => {
                 <Menu.Item >
                     <Dropdown pointing='top left' text="Grupy">
                         <Dropdown.Menu>
-                            <Dropdown.Item text='Dodaj' icon='plus' />
+                            <Dropdown.Item text='Dodaj' icon='plus' onClick={() => openModal(<GroupForm />)} />
                             <Dropdown.Item text='Przeglądaj' icon='list' />
                         </Dropdown.Menu>
                     </Dropdown>

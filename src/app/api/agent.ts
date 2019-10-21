@@ -2,9 +2,10 @@ import axios, { AxiosResponse } from 'axios';
 import { history } from '../..';
 import { toast } from 'react-toastify';
 import { IUser, IUserFormValues } from '../models/user';
-import { ICourse, ICourseFormValues } from '../models/course';
+import { ICourse } from '../models/course';
+import { IGroupFormValues } from '../models/group';
 
-axios.defaults.baseURL = "http://localhost:53547/api"
+axios.defaults.baseURL = "https://localhost:44323/api"
 
 axios.interceptors.request.use(
   config => {
@@ -74,9 +75,15 @@ const Users = {
 
 const Courses = {
   create: (course: ICourse) => requests.post('/course', course),
+  list: (): Promise<ICourse[]> => requests.get('/course'),
+}
+
+const Groups = {
+  create: (group: IGroupFormValues) => requests.post('/group', group),
 }
 
 export default {
   Users,
-  Courses
+  Courses,
+  Groups
 };
