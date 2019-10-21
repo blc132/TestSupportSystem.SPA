@@ -15,6 +15,7 @@ export default class GroupStore {
     }
 
     @observable group: IGroup | null = null;
+    @observable groups: IGroup[] = [];
     @observable submitting = false;
 
 
@@ -27,6 +28,11 @@ export default class GroupStore {
             this.submitting = false;
           });
           this.rootStore.modalStore.closeModal();
+          let groupFromDb = await agent.Groups.getByName(group.name)
+
+          runInAction('adding group to list', () => {
+            this.groups = [...this.groups, groupFromDb ]
+          });
           toast.info('Dodano grupę');
         } catch (error) {
           runInAction('create group error', () => {
@@ -34,6 +40,21 @@ export default class GroupStore {
           });
           toast.error('Błąd przesyłania danych');
           console.log(error.response);
+        }
+      };
+
+      @action loadGroups = async () => {
+        try {
+          const groups = await agent.Groups.list();
+          runInAction('loading groups', () => {
+            groups.forEach(group => {
+              if(this.groups.find(x => x.name == group.name) == null)              
+                this.groups = [...this.groups, group ]
+            });
+          });
+        } catch (error) {
+          runInAction('load groups options error', () => {
+          });
         }
       };
 }

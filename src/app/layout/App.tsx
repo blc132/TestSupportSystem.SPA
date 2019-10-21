@@ -16,6 +16,7 @@ import { observer } from 'mobx-react-lite';
 import { Container } from 'semantic-ui-react';
 import PrivateRoute from './PrivateRoute';
 import NotFound from './NotFound';
+import GroupList from '../../features/group/dashboard/GroupList'
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -45,6 +46,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
             <Container style={{ marginTop: '7em' }}>
               <Switch>
                 <Route exact path='/home' component={HomePage} />
+                <Route exact path='/groups' component={GroupList} />
                 <Route component={NotFound} />
               </Switch>
             </Container>

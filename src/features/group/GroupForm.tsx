@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { Form as FinalForm, Field } from 'react-final-form';
 import { Form, Button, Header } from 'semantic-ui-react';
 import TextInput from '../../app/common/form/TextInput';
@@ -8,12 +8,12 @@ import { combineValidators, isRequired } from 'revalidate';
 import ErrorMessage from '../../app/common/form/ErrorMessage';
 import { IGroupFormValues } from '../../app/models/group';
 import SelectInput from '../../app/common/form/SelectInput';
-import { observable } from 'mobx';
 import { observer } from 'mobx-react-lite';
 
 
 const validate = combineValidators({
     name: isRequired({ message: 'Wymagane' }),
+    "course.id": isRequired({ message: 'Wymagane' }),
 })
 
 const GroupForm = () => {

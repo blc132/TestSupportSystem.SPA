@@ -37,7 +37,7 @@ const NavBar: React.FC = () => {
                     <Dropdown pointing='top left' text="Grupy">
                         <Dropdown.Menu>
                             <Dropdown.Item text='Dodaj' icon='plus' onClick={() => openModal(<GroupForm />)} />
-                            <Dropdown.Item text='Przeglądaj' icon='list' />
+                            <Dropdown.Item text='Przeglądaj' icon='list' as={NavLink} exact to='/groups' />
                         </Dropdown.Menu>
                     </Dropdown>
                 </Menu.Item>
