@@ -70,7 +70,8 @@ const Users = {
   login: (user: IUserFormValues): Promise<IUser> =>
     requests.post(`/user/login`, user),
   register: (user: IUserFormValues): Promise<IUser> =>
-    requests.post(`/user/register`, user)
+    requests.post(`/user/register`, user),
+  list: (): Promise<IUser[]> => requests.get('/user/all'),
 };
 
 const Courses = {

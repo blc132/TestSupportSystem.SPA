@@ -3,6 +3,8 @@ import { IUser, IUserFormValues } from '../models/user';
 import agent from '../api/agent';
 import { RootStore } from './rootStore';
 import { history } from '../..';
+import { toast } from 'react-toastify';
+import { any } from 'prop-types';
 
 export default class UserStore {
   rootStore: RootStore;
@@ -11,6 +13,8 @@ export default class UserStore {
   }
 
   @observable user: IUser | null = null;
+  @observable users: IUser[] = [];
+  @observable submitting = false;
 
   @computed get isLoggedIn() {
     return !!this.user;
@@ -20,10 +24,10 @@ export default class UserStore {
     try {
       const user = await agent.Users.login(values);
       runInAction(() => {
-          console.log(user);
+        console.log(user);
         this.user = user;
       });
-      this.rootStore.commonStore.setToken(user.token);
+      this.rootStore.commonStore.setToken(user.token!);
       this.rootStore.modalStore.closeModal();
       history.push('/home');
     } catch (error) {
@@ -34,11 +38,29 @@ export default class UserStore {
   @action register = async (values: IUserFormValues) => {
     try {
       const user = await agent.Users.register(values);
-      this.rootStore.commonStore.setToken(user.token);
+      this.rootStore.commonStore.setToken(user.token!);
       this.rootStore.modalStore.closeModal();
       history.push('/home')
     } catch (error) {
       throw error;
+    }
+  }
+
+  @action registerUser = async (values: IUserFormValues) => {
+    this.submitting = true;
+    try {
+      await agent.Users.register(values);
+      runInAction('adding group to list', () => {
+        this.users = [...this.users, values! ]
+      });
+      this.rootStore.modalStore.closeModal();
+      toast.info('Zarejestrowano użytkownika');
+    } catch (error) {
+      runInAction('register user error', () => {
+        this.submitting = false;
+      });
+      toast.error('Błąd przesyłania danych');
+      console.log(error.response);
     }
   }
 
@@ -57,5 +79,20 @@ export default class UserStore {
     this.rootStore.commonStore.setToken(null);
     this.user = null;
     history.push('/');
+  };
+
+  @action loadUsers = async () => {
+    try {
+      const users = await agent.Users.list();
+      runInAction('loading users', () => {
+        users.forEach(user => {
+          if(this.users.find(x => x.email == user.email) == null)              
+            this.users = [...this.users, user ]
+        });
+      });
+    } catch (error) {
+      runInAction('load users error', () => {
+      });
+    }
   };
 }
