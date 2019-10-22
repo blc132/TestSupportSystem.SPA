@@ -1,13 +1,19 @@
-import React, { useContext, Fragment } from 'react';
+import React, { useContext, Fragment, useEffect } from 'react';
 import { Item, Label, Card, Button, Image, Segment } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { Link } from 'react-router-dom';
+import LoadingComponent from '../../../app/layout/LoadingComponent';
 
 const GroupList: React.FC = () => {
     const rootStore = useContext(RootStoreContext);
-    const { groups, loadGroups } = rootStore.groupStore;
-    loadGroups();
+    const { groups, loadGroups, loadingInitial } = rootStore.groupStore;
+
+    useEffect(() => {
+        loadGroups();
+      }, [loadGroups]);
+
+    if (loadingInitial) return <LoadingComponent content='Ładowanie grup...' />;
 
     return (
         <Segment>

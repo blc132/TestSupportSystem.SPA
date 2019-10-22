@@ -33,33 +33,33 @@ const GroupDetails: React.FC<RouteComponentProps<DetailParams>> = ({
         </Card.Content>
       </Card>
       <Divider horizontal>Prowadzący</Divider>
-            <Card.Group>
-                {groupDetails.members.filter(function (user) {
-                    return user.role == "Prowadzacy";
-                }).map((lecturer) => (
-                    <Card>
-                    <Card.Content>
-                        <Card.Header>{lecturer.email}</Card.Header>
-                        <Card.Meta>{lecturer.firstName + " " + lecturer.lastName}</Card.Meta>
-                        <Card.Meta>{lecturer.userName}</Card.Meta>
-                    </Card.Content>
-                </Card>
-                ))}
-            </Card.Group>
-            <Divider horizontal>Studenci</Divider>
-            <Card.Group>
-                {groupDetails.members.filter(function (user) {
-                    return user.role == "Student";
-                }).map((student) => (
-                    <Card>
-                    <Card.Content>
-                        <Card.Header>{student.email}</Card.Header>
-                        <Card.Meta>{student.firstName + " " + student.lastName}</Card.Meta>
-                        <Card.Meta>{student.userName}</Card.Meta>
-                    </Card.Content>
-                </Card>
-                ))}
-            </Card.Group>
+      <Card.Group>
+        {groupDetails.members.filter(function (user) {
+          return user.role == "Prowadzacy";
+        }).map((lecturer) => (
+          <Card>
+            <Card.Content>
+              <Card.Header>{lecturer.email}</Card.Header>
+              <Card.Meta>{lecturer.firstName + " " + lecturer.lastName}</Card.Meta>
+              <Card.Meta>{lecturer.userName}</Card.Meta>
+            </Card.Content>
+          </Card>
+        ))}
+      </Card.Group>
+      <Divider horizontal>Studenci</Divider>
+      <Card.Group>
+        {groupDetails.members.filter(function (user) {
+          return user.role == "Student";
+        }).map((student) => (
+          <Card>
+            <Card.Content>
+              <Card.Header>{student.email}</Card.Header>
+              <Card.Meta>{student.firstName + " " + student.lastName}</Card.Meta>
+              <Card.Meta>{student.userName}</Card.Meta>
+            </Card.Content>
+          </Card>
+        ))}
+      </Card.Group>
     </Segment>
 
 

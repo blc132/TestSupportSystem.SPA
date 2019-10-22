@@ -15,6 +15,7 @@ export default class UserStore {
   @observable user: IUser | null = null;
   @observable users: IUser[] = [];
   @observable submitting = false;
+  @observable loadingInitial = false;
 
   @computed get isLoggedIn() {
     return !!this.user;
@@ -82,6 +83,7 @@ export default class UserStore {
   };
 
   @action loadUsers = async () => {
+    this.loadingInitial = true;
     try {
       const users = await agent.Users.list();
       runInAction('loading users', () => {
@@ -90,8 +92,10 @@ export default class UserStore {
             this.users = [...this.users, user ]
         });
       });
+      this.loadingInitial = false;
     } catch (error) {
       runInAction('load users error', () => {
+        this.loadingInitial = false;
       });
     }
   };

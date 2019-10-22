@@ -1,13 +1,19 @@
-import React, { useContext, Fragment } from 'react';
+import React, { useContext, Fragment, useEffect } from 'react';
 import { Item, Label, Card, Button, Image, Segment } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { Link } from 'react-router-dom';
+import LoadingComponent from '../../../app/layout/LoadingComponent';
 
 const GroupList: React.FC = () => {
     const rootStore = useContext(RootStoreContext);
-    const { courses, loadCourses } = rootStore.courseStore;
-    loadCourses();
+    const { courses, loadCourses, loadingInitial } = rootStore.courseStore;
+
+    useEffect(() => {
+        loadCourses();
+      }, [loadCourses]);
+
+    if (loadingInitial) return <LoadingComponent content='Ładowanie kursów...' />;
 
     return (
         <Segment>

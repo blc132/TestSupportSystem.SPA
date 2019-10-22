@@ -1,13 +1,18 @@
-import React, { useContext, Fragment } from 'react';
+import React, { useContext, Fragment, useEffect } from 'react';
 import { Item, Label, Card, Button, Image, Segment, Divider } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../app/stores/rootStore';
+import LoadingComponent from '../../../app/layout/LoadingComponent';
 
 const UserList: React.FC = () => {
     const rootStore = useContext(RootStoreContext);
-    const { users, loadUsers } = rootStore.userStore;
-    loadUsers();
+    const { users, loadUsers, loadingInitial } = rootStore.userStore;
 
+    useEffect(() => {
+        loadUsers();
+      }, [loadUsers]);
+
+    if (loadingInitial) return <LoadingComponent content='Ładowanie użytkowników...' />;
     return (
         <Segment>
             <Card>
