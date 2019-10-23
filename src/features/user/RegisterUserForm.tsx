@@ -29,17 +29,26 @@ const isValidPassword = createValidator(
     'Minimum 6 znaków, mała litera, duża litera, cyfra, znak specjalny'
 )
 
-
+const arePasswordsSame = createValidator(
+    (message: any) => (value: string) => {
+        let confirmPassword = (document.getElementsByName('confirmPassword')[0] as HTMLInputElement).value;
+        if (confirmPassword != value) {
+            return message
+        }
+    },
+    'Hasła są różne'
+)
 
 const validate = combineValidators({
     userName: isRequired({ message: 'Wymagane' }),
     firstName: isRequired({ message: 'Wymagane' }),
     lastName: isRequired({ message: 'Wymagane' }),
-    role: isRequired({message: "Wymagane"}),
+    role: isRequired({ message: "Wymagane" }),
 
     password: composeValidators(
         isRequired({ message: 'Wymagane' }),
         isValidPassword,
+        arePasswordsSame,
     )(),
 
     email: composeValidators(
@@ -92,6 +101,12 @@ const RegisterUserForm = () => {
                             name='password'
                             component={TextInput}
                             placeholder='Hasło'
+                            type='password'
+                        />
+                        <Field
+                            name='confirmPassword'
+                            component={TextInput}
+                            placeholder='Powtórz hasło'
                             type='password'
                         />
                         <Field
