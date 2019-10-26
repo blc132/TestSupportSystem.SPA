@@ -117,12 +117,6 @@ const RegisterForm = () => {
                             name='role'
                             placeholder='Rola'
                         />
-                        <Field
-                            name='rolePassword'
-                            component={TextInput}
-                            placeholder='Hasło do roli'
-                            type='password'
-                        />
                         {submitError && !dirtySinceLastSubmit && (
                             <ErrorMessage
                                 error={submitError}
