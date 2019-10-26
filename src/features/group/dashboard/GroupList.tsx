@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Card, Button, Segment } from 'semantic-ui-react';
+import { Card, Button, Segment, Divider } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { Link } from 'react-router-dom';
@@ -17,29 +17,13 @@ const GroupList: React.FC = () => {
 
     return (
         <Segment>
-            <Card>
-                <Card.Content>
-                    <Card.Header><h1>Grupy</h1></Card.Header>
-                </Card.Content>
-            </Card>
+            <Divider horizontal><h1>Grupy</h1></Divider>
             <Card.Group>
                 {groups.map((group) => (
                     <Card>
                         <Card.Content>
                             <Card.Header as={Link} to={`/group/${group.id}`}>{group.name}</Card.Header>
                             <Card.Meta>{group.course.name}</Card.Meta>
-                        </Card.Content>
-                        <Card.Content extra>
-                            <Card.Meta>Zarządzaj studentami</Card.Meta>
-                            <div className='ui two buttons'>
-
-                                <Button color='green'>
-                                    Dodaj
-          </Button>
-                                <Button color='red'>
-                                    Usuń
-          </Button>
-                            </div>
                         </Card.Content>
                     </Card>
                 ))}

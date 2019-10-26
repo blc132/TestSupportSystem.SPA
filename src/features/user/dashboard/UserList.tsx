@@ -17,11 +17,7 @@ const UserList: React.FC = () => {
     if (loadingInitial) return <LoadingComponent content='Ładowanie użytkowników...' />;
     return (
         <Segment>
-            <Card>
-                <Card.Content>
-                    <Card.Header><h1>Użytkownicy</h1></Card.Header>
-                </Card.Content>
-            </Card>
+            <Divider horizontal><h1>Użytkownicy</h1></Divider>
             {user && user.role === ADMINISTRATOR_ROLE && (
                 <Fragment>
                     <UsersCardsGroup users={users.filter(x => x.role == ADMINISTRATOR_ROLE)} groupName="Administratorzy" />
@@ -44,5 +40,4 @@ const UserList: React.FC = () => {
         </Segment>
     );
 };
-
 export default observer(UserList);

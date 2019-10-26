@@ -26,12 +26,8 @@ const GroupDetails: React.FC<RouteComponentProps<DetailParams>> = ({
 
   return (
     <Segment placeholder>
-      <Card>
-        <Card.Content>
-          <Card.Header><h1>{groupDetails.name}</h1></Card.Header>
-          <Card.Meta>{groupDetails.course.name}</Card.Meta>
-        </Card.Content>
-      </Card>
+      <Divider horizontal><h1>{groupDetails.name}</h1></Divider>
+      <Divider horizontal><h3>{groupDetails.course.name}</h3></Divider>
       <Divider horizontal>Prowadzący</Divider>
       <Card.Group>
         {groupDetails.members.filter(function (user) {

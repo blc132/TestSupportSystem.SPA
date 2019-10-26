@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Card, Segment } from 'semantic-ui-react';
+import { Card, Segment, Divider } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
@@ -16,11 +16,7 @@ const GroupList: React.FC = () => {
 
     return (
         <Segment>
-            <Card>
-                <Card.Content>
-                    <Card.Header><h1>Kursy</h1></Card.Header>
-                </Card.Content>
-            </Card>
+            <Divider horizontal><h1>Kursy</h1></Divider>
             <Card.Group>
                 {courses.map((course) => (
                     <Card>
