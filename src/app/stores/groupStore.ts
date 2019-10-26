@@ -49,7 +49,7 @@ export default class GroupStore {
       const groups = await agent.Groups.list();
       runInAction('loading groups', () => {
         groups.forEach(group => {
-          if (this.groups.find(x => x.name === group.name) === null)
+          if (this.groups.find(x => x.name == group.name) == null)
             this.groups = [...this.groups, group]
         });
       });

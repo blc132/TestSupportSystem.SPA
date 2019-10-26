@@ -45,7 +45,7 @@ export default class CourseStore {
       const courses = await agent.Courses.list();
       runInAction('loading courses', () => {
         courses.forEach(course => {
-          if (this.courseOptions.find(x => x.key === course.id) === null)
+          if (this.courseOptions.find(x => x.key == course.id) == null)
             this.courseOptions = [...this.courseOptions, { key: course.id, value: course.id, text: course.name }]
         });
       });
@@ -60,7 +60,7 @@ export default class CourseStore {
       const courses = await agent.Courses.list();
       runInAction('loading courses', () => {
         courses.forEach(course => {
-          if (this.courses.find(x => x.name === course.name) === null)
+          if (this.courses.find(x => x.name == course.name) == null)
             this.courses = [...this.courses, course]
         });
       });

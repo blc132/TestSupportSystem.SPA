@@ -87,7 +87,7 @@ export default class UserStore {
       const users = await agent.Users.list();
       runInAction('loading users', () => {
         users.forEach(user => {
-          if (this.users.find(x => x.email === user.email) === null)
+          if (this.users.find(x => x.email == user.email) == null)
             this.users = [...this.users, user]
         });
       });
