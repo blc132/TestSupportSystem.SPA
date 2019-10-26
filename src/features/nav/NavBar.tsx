@@ -6,7 +6,6 @@ import { RootStoreContext } from '../../app/stores/rootStore';
 import CourseForm from '../course/CourseForm';
 import GroupForm from '../group/GroupForm';
 import RegisterUserForm from '../user/RegisterUserForm';
-import { ADMINISTRATOR_ROLE, MAINLECTURER_ROLE, LECTURER_ROLE, STUDENT_ROLE } from '../../app/common/roles/roles'
 
 const NavBar: React.FC = () => {
     const rootStore = useContext(RootStoreContext);
@@ -26,6 +25,8 @@ const NavBar: React.FC = () => {
                             <Dropdown.Item text='Przeglądaj' icon='list' as={NavLink} exact to='/courses' />
                         </Dropdown.Menu>
                     </Dropdown>
+                </Menu.Item >
+                <Menu.Item >
                     <Dropdown pointing='top left' text="Zadania">
                         <Dropdown.Menu>
                             <Dropdown.Item text='Dodaj' icon='plus' />
