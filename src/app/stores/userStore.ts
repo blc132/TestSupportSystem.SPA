@@ -26,6 +26,9 @@ export default class UserStore {
       runInAction(() => {
         console.log(user);
         this.user = user;
+        this.user.role = user.role;
+        console.log(this.user.role)
+        console.log(user.role)
       });
       this.rootStore.commonStore.setToken(user.token!);
       this.rootStore.modalStore.closeModal();
@@ -39,6 +42,10 @@ export default class UserStore {
     try {
       const user = await agent.Users.register(values);
       this.rootStore.commonStore.setToken(user.token!);
+      runInAction(() => {
+        console.log(user);
+        this.user = user;
+      });
       this.rootStore.modalStore.closeModal();
       history.push('/home')
     } catch (error) {

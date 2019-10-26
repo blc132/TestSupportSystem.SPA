@@ -1,12 +1,14 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, Fragment } from 'react';
 import { Card, Segment, Divider } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
+import { ADMINISTRATOR_ROLE, MAINLECTURER_ROLE, LECTURER_ROLE, STUDENT_ROLE } from '../../../app/common/roles/roles';
+import UsersCardsGroup from './UsersCardsGroup'
 
 const UserList: React.FC = () => {
     const rootStore = useContext(RootStoreContext);
-    const { users, loadUsers, loadingInitial } = rootStore.userStore;
+    const { users, loadUsers, loadingInitial, user } = rootStore.userStore;
 
     useEffect(() => {
         loadUsers();
@@ -20,48 +22,25 @@ const UserList: React.FC = () => {
                     <Card.Header><h1>Użytkownicy</h1></Card.Header>
                 </Card.Content>
             </Card>
-            <Divider horizontal>Główni prowadzący</Divider>
-            <Card.Group>
-                {users.filter(function (user) {
-                    return user.role === "GlownyProwadzacy";
-                }).map((mainlecturer) => (
-                    <Card>
-                        <Card.Content>
-                            <Card.Header>{mainlecturer.email}</Card.Header>
-                            <Card.Meta>{mainlecturer.firstName + " " + mainlecturer.lastName}</Card.Meta>
-                            <Card.Meta>{mainlecturer.userName}</Card.Meta>
-                        </Card.Content>
-                    </Card>
-                ))}
-            </Card.Group>
-            <Divider horizontal>Prowadzący</Divider>
-            <Card.Group>
-                {users.filter(function (user) {
-                    return user.role === "Prowadzacy";
-                }).map((lecturer) => (
-                    <Card>
-                        <Card.Content>
-                            <Card.Header>{lecturer.email}</Card.Header>
-                            <Card.Meta>{lecturer.firstName + " " + lecturer.lastName}</Card.Meta>
-                            <Card.Meta>{lecturer.userName}</Card.Meta>
-                        </Card.Content>
-                    </Card>
-                ))}
-            </Card.Group>
-            <Divider horizontal>Studenci</Divider>
-            <Card.Group>
-                {users.filter(function (user) {
-                    return user.role === "Student";
-                }).map((student) => (
-                    <Card>
-                        <Card.Content>
-                            <Card.Header>{student.email}</Card.Header>
-                            <Card.Meta>{student.firstName + " " + student.lastName}</Card.Meta>
-                            <Card.Meta>{student.userName}</Card.Meta>
-                        </Card.Content>
-                    </Card>
-                ))}
-            </Card.Group>
+            {user && user.role === ADMINISTRATOR_ROLE && (
+                <Fragment>
+                    <UsersCardsGroup users={users.filter(x => x.role == ADMINISTRATOR_ROLE)} groupName="Administratorzy" />
+                    <UsersCardsGroup users={users.filter(x => x.role == MAINLECTURER_ROLE)} groupName="Główni prowadzący" />
+                    <UsersCardsGroup users={users.filter(x => x.role == LECTURER_ROLE)} groupName="Prowadzący" />
+                    <UsersCardsGroup users={users.filter(x => x.role == STUDENT_ROLE)} groupName="Studenci" />
+                </Fragment>
+            )}
+            {user && user.role === MAINLECTURER_ROLE && (
+                <Fragment>
+                    <UsersCardsGroup users={users.filter(x => x.role == LECTURER_ROLE)} groupName="Prowadzący" />
+                    <UsersCardsGroup users={users.filter(x => x.role == STUDENT_ROLE)} groupName="Studenci" />
+                </Fragment>
+            )}
+            {user && user.role === LECTURER_ROLE && (
+                <Fragment>
+                    <UsersCardsGroup users={users.filter(x => x.role == STUDENT_ROLE)} groupName="Studenci" />
+                </Fragment>
+            )}
         </Segment>
     );
 };
