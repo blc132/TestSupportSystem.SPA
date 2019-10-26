@@ -14,7 +14,6 @@ import {
 } from 'react-router-dom';
 import { observer } from 'mobx-react-lite';
 import { Container } from 'semantic-ui-react';
-import PrivateRoute from './PrivateRoute';
 import NotFound from './NotFound';
 import GroupList from '../../features/group/dashboard/GroupList'
 import GroupDetails from '../../features/group/details/GroupDetails'
@@ -52,7 +51,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                 <Route exact path='/groups' component={GroupList} />
                 <Route exact path='/courses' component={CourseList} />
                 <Route exact path='/users' component={UserList} />
-                <Route exact path='/group/:id' component={GroupDetails}/>
+                <Route exact path='/group/:id' component={GroupDetails} />
                 <Route component={NotFound} />
               </Switch>
             </Container>

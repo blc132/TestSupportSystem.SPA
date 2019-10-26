@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, Fragment } from 'react';
-import { Grid, Card, Segment, Divider } from 'semantic-ui-react';
+import React, { useContext, useEffect } from 'react';
+import { Card, Segment, Divider } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
@@ -35,7 +35,7 @@ const GroupDetails: React.FC<RouteComponentProps<DetailParams>> = ({
       <Divider horizontal>Prowadzący</Divider>
       <Card.Group>
         {groupDetails.members.filter(function (user) {
-          return user.role == "Prowadzacy";
+          return user.role === "Prowadzacy";
         }).map((lecturer) => (
           <Card>
             <Card.Content>
@@ -49,7 +49,7 @@ const GroupDetails: React.FC<RouteComponentProps<DetailParams>> = ({
       <Divider horizontal>Studenci</Divider>
       <Card.Group>
         {groupDetails.members.filter(function (user) {
-          return user.role == "Student";
+          return user.role === "Student";
         }).map((student) => (
           <Card>
             <Card.Content>

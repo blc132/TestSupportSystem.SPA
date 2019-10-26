@@ -5,11 +5,10 @@ import TextInput from '../../app/common/form/TextInput';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import { IUserFormValues } from '../../app/models/user';
 import { FORM_ERROR } from 'final-form';
-import { combineValidators, isRequired, createValidator, composeValidators, matchesField } from 'revalidate';
+import { combineValidators, isRequired, createValidator, composeValidators } from 'revalidate';
 import ErrorMessage from '../../app/common/form/ErrorMessage';
 import { roles } from '../../app/common/options/roleOptions';
 import SelectInput from '../../app/common/form/SelectInput';
-import { createAction } from 'mobx/lib/internal';
 
 
 const isValidEmail = createValidator(
@@ -33,7 +32,7 @@ const isValidPassword = createValidator(
 const arePasswordsSame = createValidator(
     (message: any) => (value: string) => {
         let confirmPassword = (document.getElementsByName('confirmPassword')[0] as HTMLInputElement).value;
-        if (confirmPassword != value) {
+        if (confirmPassword !== value) {
             return message
         }
     },

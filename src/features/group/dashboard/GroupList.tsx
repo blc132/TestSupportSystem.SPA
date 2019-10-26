@@ -1,5 +1,5 @@
-import React, { useContext, Fragment, useEffect } from 'react';
-import { Item, Label, Card, Button, Image, Segment } from 'semantic-ui-react';
+import React, { useContext, useEffect } from 'react';
+import { Card, Button, Segment } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { Link } from 'react-router-dom';
@@ -11,7 +11,7 @@ const GroupList: React.FC = () => {
 
     useEffect(() => {
         loadGroups();
-      }, [loadGroups]);
+    }, [loadGroups]);
 
     if (loadingInitial) return <LoadingComponent content='Ładowanie grup...' />;
 

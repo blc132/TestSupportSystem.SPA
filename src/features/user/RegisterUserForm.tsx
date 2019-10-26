@@ -32,7 +32,7 @@ const isValidPassword = createValidator(
 const arePasswordsSame = createValidator(
     (message: any) => (value: string) => {
         let confirmPassword = (document.getElementsByName('confirmPassword')[0] as HTMLInputElement).value;
-        if (confirmPassword != value) {
+        if (confirmPassword !== value) {
             return message
         }
     },

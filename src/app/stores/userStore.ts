@@ -4,7 +4,6 @@ import agent from '../api/agent';
 import { RootStore } from './rootStore';
 import { history } from '../..';
 import { toast } from 'react-toastify';
-import { any } from 'prop-types';
 
 export default class UserStore {
   rootStore: RootStore;
@@ -52,7 +51,7 @@ export default class UserStore {
     try {
       await agent.Users.register(values);
       runInAction('adding group to list', () => {
-        this.users = [...this.users, values! ]
+        this.users = [...this.users, values!]
       });
       this.rootStore.modalStore.closeModal();
       toast.info('Zarejestrowano użytkownika');
@@ -88,8 +87,8 @@ export default class UserStore {
       const users = await agent.Users.list();
       runInAction('loading users', () => {
         users.forEach(user => {
-          if(this.users.find(x => x.email == user.email) == null)              
-            this.users = [...this.users, user ]
+          if (this.users.find(x => x.email === user.email) === null)
+            this.users = [...this.users, user]
         });
       });
       this.loadingInitial = false;

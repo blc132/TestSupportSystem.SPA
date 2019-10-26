@@ -1,9 +1,7 @@
 import { RootStore } from './rootStore';
 import { observable, runInAction, action } from 'mobx';
-import { ICourse } from '../models/course'
 import agent from '../api/agent';
 import { toast } from 'react-toastify';
-import { history } from '../..';
 import { IGroup, IGroupFormValues, IGroupDetails } from '../models/group';
 
 
@@ -51,7 +49,7 @@ export default class GroupStore {
       const groups = await agent.Groups.list();
       runInAction('loading groups', () => {
         groups.forEach(group => {
-          if (this.groups.find(x => x.name == group.name) == null)
+          if (this.groups.find(x => x.name === group.name) === null)
             this.groups = [...this.groups, group]
         });
       });
