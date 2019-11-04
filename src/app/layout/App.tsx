@@ -19,7 +19,7 @@ import GroupList from '../../features/group/dashboard/GroupList'
 import GroupDetails from '../../features/group/details/GroupDetails'
 import CourseList from '../../features/course/dashboard/CourseList'
 import UserList from '../../features/user/dashboard/UserList'
-import SolveExercise from '../../features/exercise/SolveExercise'
+import SolveExercise from '../../features/exercise/solve/SolveExercise'
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
