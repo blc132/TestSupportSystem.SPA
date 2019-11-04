@@ -3,6 +3,7 @@ import { observable, runInAction, action } from 'mobx';
 import agent from '../api/agent';
 import { toast } from 'react-toastify';
 import { IGroup, IGroupFormValues, IGroupDetails } from '../models/group';
+import { IAddUserToGroupFormValues } from '../models/user';
 
 
 
@@ -62,14 +63,43 @@ export default class GroupStore {
   };
 
   @action loadGroupDetails = async (id: string) => {
+    this.loadingInitial = true;
     try {
       const group = await agent.Groups.getById(id);
       runInAction('loading group', () => {
         this.groupDetails = group;
+        this.loadingInitial = false;
       });
     } catch (error) {
       runInAction('load group error', () => {
+        this.loadingInitial = false;
+
       });
+    }
+  };
+
+  @action addUser = async (values: IAddUserToGroupFormValues) => {
+    this.submitting = true;
+    try {
+      await agent.Groups.addUserByEmail(values);
+      runInAction('add user to group', () => {
+        this.submitting = false;
+      });
+      let userFromDb = await agent.Users.getByEmail(values.email)
+
+      runInAction('adding user to group list', () => {
+        if (this.groupDetails)
+          this.groupDetails.members = [...this.groupDetails.members, userFromDb]
+      });
+      toast.info('Dodano użytkownika');
+    } catch (error) {
+
+      runInAction('adding user to group list error', () => {
+        this.submitting = false;
+      });
+
+      toast.error(JSON.stringify(error.data.errors).replace(/"/g, '').replace(/{/g, '').replace(/}/g, ''));
+      throw error;
     }
   };
 }

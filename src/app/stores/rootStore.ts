@@ -6,7 +6,7 @@ import { createContext } from 'react';
 import { configure } from 'mobx';
 import CourseStore from './courseStore';
 
-configure({enforceActions: 'always'});
+configure({ enforceActions: 'always' });
 
 export class RootStore {
     userStore: UserStore;

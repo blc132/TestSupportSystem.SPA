@@ -1,7 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { history } from '../..';
 import { toast } from 'react-toastify';
-import { IUser, IUserFormValues } from '../models/user';
+import { IUser, IUserFormValues, IAddUserToGroupFormValues } from '../models/user';
 import { ICourse } from '../models/course';
 import { IGroupFormValues, IGroup, IGroupDetails } from '../models/group';
 
@@ -72,6 +72,7 @@ const Users = {
   register: (user: IUserFormValues): Promise<IUser> =>
     requests.post(`/user/register`, user),
   list: (): Promise<IUser[]> => requests.get('/user/all'),
+  getByEmail: (email: string): Promise<IUser> => requests.get('/user/getByEmail/' + email)
 };
 
 const Courses = {
@@ -84,6 +85,8 @@ const Groups = {
   list: (): Promise<IGroup[]> => requests.get('/group'),
   getByName: (name: string): Promise<IGroup> => requests.get('/group/getbyname/' + name),
   getById: (id: string): Promise<IGroupDetails> => requests.get('/group/' + id),
+  addUserByEmail: (values: IAddUserToGroupFormValues) => requests.post("/group/" + values.groupId + "/userEmail/" + values.email, {}),
+
 }
 
 export default {

@@ -1,3 +1,5 @@
+import { StringLiteral } from "@babel/types";
+
 export interface IUser {
     userName: string;
     firstName: string;
@@ -14,4 +16,9 @@ export interface IUserFormValues {
     lastName: string;
     userName: string;
     role: string;
+}
+
+export interface IAddUserToGroupFormValues {
+    email: string;
+    groupId: string;
 }
