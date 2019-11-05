@@ -30,8 +30,8 @@ const NavBarAdministrator: React.FC<IProps> = ({ user }) => {
                 <Menu.Item >
                     <Dropdown pointing='top left' text="Zadania">
                         <Dropdown.Menu>
-                            <Dropdown.Item text='Dodaj' icon='plus' />
-                            <Dropdown.Item text='Przeglądaj' icon='list' />
+                            <Dropdown.Item text='Dodaj' icon='plus' as={NavLink} exact to='/exercise/add' />
+                            <Dropdown.Item text='Przeglądaj' icon='list' as={NavLink} exact to='/exercises' />
                         </Dropdown.Menu>
                     </Dropdown>
                 </Menu.Item>
