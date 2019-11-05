@@ -3,7 +3,7 @@ import { Form as FinalForm, Field } from 'react-final-form';
 import { Form, Button, Grid, Segment, Header } from 'semantic-ui-react';
 import TextInput from '../../../app/common/form/TextInput';
 import { RootStoreContext } from '../../../app/stores/rootStore';
-import { IAddExerciseFormValues } from '../../../app/models/exercise';
+import { IAddExerciseFormValues, IAddExerciseFormValues2, ICorrectnessTest, convertValues } from '../../../app/models/exercise';
 import { FORM_ERROR } from 'final-form';
 import { combineValidators, isRequired, composeValidators, createValidator } from 'revalidate';
 import ErrorMessage from '../../../app/common/form/ErrorMessage';
@@ -50,11 +50,13 @@ const AddExerciseForm = () => {
     return (
 
         <FinalForm
-            onSubmit={(values: IAddExerciseFormValues) =>
-                createExercise(values).catch(error => ({
+            onSubmit={(values: IAddExerciseFormValues2) => {
+                values.initialCode = code;
+                const convertedValues = convertValues(values);
+                createExercise(convertedValues).catch(error => ({
                     [FORM_ERROR]: error
                 }))
-            }
+            }}
             validate={validate}
             render={({
                 handleSubmit,
@@ -104,6 +106,7 @@ const AddExerciseForm = () => {
                                                 textAlign='center'
                                             />
                                             <CodeMirror
+                                                className="code"
                                                 value={code}
                                                 options={{
                                                     mode: 'javascript',
