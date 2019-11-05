@@ -11,14 +11,17 @@ interface IProps {
 
 const UsersCardsGroup: React.FC<IProps> = ({ users, groupName }) => {
     return (
-        <Fragment>
-            <Divider horizontal>{groupName}</Divider>
-            <Card.Group>
-                {users.map((user) => (
-                    <UserCard user={user} />
-                ))}
-            </Card.Group>
-        </Fragment>
+        users.length == 0 ?
+            <Fragment>
+            </Fragment> :
+            <Fragment>
+                <Divider horizontal>{groupName}</Divider>
+                <Card.Group>
+                    {users.map((user) => (
+                        <UserCard user={user} />
+                    ))}
+                </Card.Group>
+            </Fragment>
     );
 };
 
