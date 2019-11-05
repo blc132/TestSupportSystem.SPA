@@ -1,0 +1,14 @@
+.send-button {
+  margin-top: 1em !important;
+}
+
+.send-button-div {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding: 0;
+}
+
+.CodeMirror {
+  min-height: 40em !important;
+}

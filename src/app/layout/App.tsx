@@ -20,6 +20,7 @@ import GroupDetails from '../../features/group/details/GroupDetails'
 import CourseList from '../../features/course/dashboard/CourseList'
 import UserList from '../../features/user/dashboard/UserList'
 import SolveExercise from '../../features/exercise/solve/SolveExercise'
+import AddExerciseForm from '../../features/exercise/add/AddExerciseForm';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -54,6 +55,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                 <Route exact path='/users' component={UserList} />
                 <Route exact path='/group/:id' component={GroupDetails} />
                 <Route exact path='/exercise' component={SolveExercise} />
+                <Route exact path='/exercise/add' component={AddExerciseForm} />
                 <Route component={NotFound} />
               </Switch>
             </Container>
