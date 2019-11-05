@@ -21,7 +21,7 @@ const GroupForm = () => {
     const { loadCoursesOptions } = rootStore.courseStore;
     const { createGroup } = rootStore.groupStore;
     const { courseOptions } = rootStore.courseStore;
-    loadCoursesOptions();   
+    loadCoursesOptions();
 
     return (
         <FinalForm

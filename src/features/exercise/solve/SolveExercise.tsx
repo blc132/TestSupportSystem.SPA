@@ -4,7 +4,6 @@ import { Controlled as CodeMirror } from 'react-codemirror2'
 import './SolveExercise.css'
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
-import { autorun } from 'mobx';
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/javascript/javascript');
 

@@ -31,36 +31,45 @@ const GroupDetails: React.FC<RouteComponentProps<DetailParams>> = ({
   return (
     <Fragment>
       <Grid verticalAlign='middle'>
-        <Grid.Column width={3}>
-          <Segment>
-            <AddUserToGroupForm groupId={groupDetails.id} />
-          </Segment>
-        </Grid.Column>
+        <Grid.Row>
+          <Grid.Column width={16}>
+            <Segment>
+              <Divider horizontal><h1>{groupDetails.name}</h1></Divider>
+              <Divider horizontal><h3>{groupDetails.course.name}</h3></Divider>
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={13}>
+            <Segment>
 
-        <Grid.Column width={13}>
-          <Segment>
-            <Divider horizontal><h1>{groupDetails.name}</h1></Divider>
-            <Divider horizontal><h3>{groupDetails.course.name}</h3></Divider>
-            {user && user.role === ADMINISTRATOR_ROLE && (
-              <Fragment>
-                <UsersCardsGroup users={groupDetails.members.filter(x => x.role == MAINLECTURER_ROLE)} groupName="Główni prowadzący" />
-                <UsersCardsGroup users={groupDetails.members.filter(x => x.role == LECTURER_ROLE)} groupName="Prowadzący" />
-                <UsersCardsGroup users={groupDetails.members.filter(x => x.role == STUDENT_ROLE)} groupName="Studenci" />
-              </Fragment>
-            )}
-            {user && user.role === MAINLECTURER_ROLE && (
-              <Fragment>
-                <UsersCardsGroup users={groupDetails.members.filter(x => x.role == LECTURER_ROLE)} groupName="Prowadzący" />
-                <UsersCardsGroup users={groupDetails.members.filter(x => x.role == STUDENT_ROLE)} groupName="Studenci" />
-              </Fragment>
-            )}
-            {user && user.role === LECTURER_ROLE && (
-              <Fragment>
-                <UsersCardsGroup users={groupDetails.members.filter(x => x.role == STUDENT_ROLE)} groupName="Studenci" />
-              </Fragment>
-            )}
-          </Segment>
-        </Grid.Column>
+              {user && user.role === ADMINISTRATOR_ROLE && (
+                <Fragment>
+                  <UsersCardsGroup users={groupDetails.members.filter(x => x.role == MAINLECTURER_ROLE)} groupName="Główni prowadzący" />
+                  <UsersCardsGroup users={groupDetails.members.filter(x => x.role == LECTURER_ROLE)} groupName="Prowadzący" />
+                  <UsersCardsGroup users={groupDetails.members.filter(x => x.role == STUDENT_ROLE)} groupName="Studenci" />
+                </Fragment>
+              )}
+              {user && user.role === MAINLECTURER_ROLE && (
+                <Fragment>
+                  <UsersCardsGroup users={groupDetails.members.filter(x => x.role == LECTURER_ROLE)} groupName="Prowadzący" />
+                  <UsersCardsGroup users={groupDetails.members.filter(x => x.role == STUDENT_ROLE)} groupName="Studenci" />
+                </Fragment>
+              )}
+              {user && user.role === LECTURER_ROLE && (
+                <Fragment>
+                  <UsersCardsGroup users={groupDetails.members.filter(x => x.role == STUDENT_ROLE)} groupName="Studenci" />
+                </Fragment>
+              )}
+            </Segment>
+          </Grid.Column>
+          <Grid.Column width={3}>
+            <Segment>
+              <AddUserToGroupForm groupId={groupDetails.id} />
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
+
       </Grid>
     </Fragment>
 
