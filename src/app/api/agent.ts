@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { IUser, IUserFormValues, IAddUserToGroupFormValues } from '../models/user';
 import { ICourse } from '../models/course';
 import { IGroupFormValues, IGroup, IGroupDetails } from '../models/group';
+import { IAddExerciseFormValues } from '../models/exercise';
 
 axios.defaults.baseURL = "https://localhost:44323/api"
 
@@ -89,8 +90,13 @@ const Groups = {
 
 }
 
+const Exercise = {
+  create: (exercise: IAddExerciseFormValues) => requests.post('/exercise', exercise),
+}
+
 export default {
   Users,
   Courses,
-  Groups
+  Groups,
+  Exercise
 };
