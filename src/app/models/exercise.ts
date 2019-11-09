@@ -1,4 +1,25 @@
 import { IUser } from "./user";
+import { ICourse } from "./course";
+
+export interface IExercise {
+    id: string;
+    name: string;
+    content: string;
+    initialCode: string;
+    author: IUser;
+    course: ICourse;
+}
+
+export interface IExerciseDetails {
+    id: string;
+    name: string;
+    content: string;
+    initialCode: string;
+    author: IUser;
+    course: ICourse;
+    programmingLanguage: string;
+    correctnessTests: ICorrectnessTest[];
+}
 
 export interface IExercise {
     id: string;

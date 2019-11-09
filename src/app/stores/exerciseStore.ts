@@ -2,7 +2,7 @@ import { RootStore } from './rootStore';
 import { observable, runInAction, action } from 'mobx';
 import agent from '../api/agent';
 import { toast } from 'react-toastify';
-import { IAddExerciseFormValues, IExercise } from '../models/exercise';
+import { IAddExerciseFormValues, IExercise, IExerciseDetails } from '../models/exercise';
 
 export default class ExerciseStore {
     rootStore: RootStore;
@@ -11,6 +11,7 @@ export default class ExerciseStore {
     }
 
     @observable exercise: IExercise | null = null;
+    @observable exerciseDetails: IExerciseDetails | null = null;
     @observable exercises: IExercise[] = [];
     @observable submitting = false;
     @observable loadingInitialExercise = false;
@@ -48,6 +49,22 @@ export default class ExerciseStore {
         } catch (error) {
             runInAction('load exercises error', () => {
                 this.loadingInitialExercise = false;
+            });
+        }
+    };
+
+    @action loadExerciseDetails = async (id: string) => {
+        this.loadingInitialExercise = true;
+        try {
+            const exercise = await agent.Exercises.getById(id);
+            runInAction('loading exercise', () => {
+                this.exerciseDetails = exercise;
+                this.loadingInitialExercise = false;
+            });
+        } catch (error) {
+            runInAction('load exercise error', () => {
+                this.loadingInitialExercise = false;
+
             });
         }
     };
