@@ -8,17 +8,15 @@ import ExercisesCardsGroup from './ExercisesCardsGroup'
 
 const UserList: React.FC = () => {
     const rootStore = useContext(RootStoreContext);
-    const { users, loadUsers, loadingInitial, user } = rootStore.userStore;
     const { courses, loadCourses } = rootStore.courseStore;
     const { exercises, loadExercises, loadingInitialExercise } = rootStore.exerciseStore;
 
     useEffect(() => {
-        loadUsers();
         loadExercises();
         loadCourses();
-    }, [loadUsers, loadExercises, loadCourses]);
+    }, [loadExercises, loadCourses]);
 
-    if (loadingInitial || loadingInitialExercise) return <LoadingComponent content='Ładowanie zadań...' />;
+    if (loadingInitialExercise) return <LoadingComponent content='Ładowanie zadań...' />;
     return (
         <Segment>
             <Divider horizontal><h1>Zadania</h1></Divider>
