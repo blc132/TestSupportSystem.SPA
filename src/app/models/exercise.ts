@@ -1,8 +1,15 @@
+import { IUser } from "./user";
+
 export interface IExercise {
     id: string;
     name: string;
     content: string;
     initialCode: string;
+    author: IUser;
+    course: {
+        id: string;
+        name: string;
+    }
 }
 
 export interface ICorrectnessTest {

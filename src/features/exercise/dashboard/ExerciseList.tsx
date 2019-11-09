@@ -1,0 +1,33 @@
+import React, { useContext, useEffect, Fragment } from 'react';
+import { Card, Segment, Divider } from 'semantic-ui-react';
+import { observer } from 'mobx-react-lite';
+import { RootStoreContext } from '../../../app/stores/rootStore';
+import LoadingComponent from '../../../app/layout/LoadingComponent';
+import { ADMINISTRATOR_ROLE, MAINLECTURER_ROLE, LECTURER_ROLE, STUDENT_ROLE } from '../../../app/common/roles/roles';
+import ExercisesCardsGroup from './ExercisesCardsGroup'
+
+const UserList: React.FC = () => {
+    const rootStore = useContext(RootStoreContext);
+    const { users, loadUsers, loadingInitial, user } = rootStore.userStore;
+    const { courses, loadCourses } = rootStore.courseStore;
+    const { exercises, loadExercises, loadingInitialExercise } = rootStore.exerciseStore;
+
+    useEffect(() => {
+        loadUsers();
+        loadExercises();
+        loadCourses();
+    }, [loadUsers, loadExercises, loadCourses]);
+
+    if (loadingInitial || loadingInitialExercise) return <LoadingComponent content='Ładowanie zadań...' />;
+    return (
+        <Segment>
+            <Divider horizontal><h1>Zadania</h1></Divider>
+            {courses.map(course => (
+                <Fragment>
+                    <ExercisesCardsGroup exercises={exercises.filter(exercise => exercise.course.name == course.name)} courseName={course.name} />
+                </Fragment>
+            ))}
+        </Segment>
+    )
+}
+export default observer(UserList);

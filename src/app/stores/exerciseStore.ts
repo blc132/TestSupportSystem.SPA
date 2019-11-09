@@ -13,14 +13,14 @@ export default class ExerciseStore {
     @observable exercise: IExercise | null = null;
     @observable exercises: IExercise[] = [];
     @observable submitting = false;
-    @observable loadingInitial = false;
+    @observable loadingInitialExercise = false;
     @observable code: string = ""
 
     @action createExercise = async (exercise: IAddExerciseFormValues) => {
         this.submitting = true;
         console.log(exercise);
         try {
-            await agent.Exercise.create(exercise);
+            await agent.Exercises.create(exercise);
             runInAction('create exercise', () => {
                 this.submitting = false;
             });
@@ -31,6 +31,24 @@ export default class ExerciseStore {
             });
             toast.error('Błąd przesyłania danych');
             console.log(error.response);
+        }
+    };
+
+    @action loadExercises = async () => {
+        this.loadingInitialExercise = true;
+        try {
+            const exercises = await agent.Exercises.list();
+            runInAction('loading exercises', () => {
+                exercises.forEach(exercise => {
+                    if (this.exercises.find(x => x.name == exercise.name) == null)
+                        this.exercises = [...this.exercises, exercise]
+                });
+            });
+            this.loadingInitialExercise = false;
+        } catch (error) {
+            runInAction('load exercises error', () => {
+                this.loadingInitialExercise = false;
+            });
         }
     };
 }
