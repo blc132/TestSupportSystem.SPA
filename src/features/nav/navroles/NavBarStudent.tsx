@@ -23,7 +23,7 @@ const NavBarStudent: React.FC<IProps> = ({ user }) => {
                 <Menu.Item >
                     <Dropdown pointing='top left' text="Zadania">
                         <Dropdown.Menu>
-                            <Dropdown.Item text='Przeglądaj' icon='list' />
+                            <Dropdown.Item text='Przeglądaj' icon='list' as={NavLink} exact to='/exercises' />
                         </Dropdown.Menu>
                     </Dropdown>
                 </Menu.Item>
