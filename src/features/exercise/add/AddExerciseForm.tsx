@@ -1,11 +1,11 @@
-import React, { useContext, Fragment, constructor, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Form as FinalForm, Field } from 'react-final-form';
 import { Form, Button, Grid, Segment, Header } from 'semantic-ui-react';
 import TextInput from '../../../app/common/form/TextInput';
 import { RootStoreContext } from '../../../app/stores/rootStore';
-import { IAddExerciseFormValues, IAddExerciseFormValues2, ICorrectnessTest, convertValues } from '../../../app/models/exercise';
+import { IAddExerciseFormValues2, convertValues } from '../../../app/models/exercise';
 import { FORM_ERROR } from 'final-form';
-import { combineValidators, isRequired, composeValidators, createValidator } from 'revalidate';
+import { combineValidators, isRequired } from 'revalidate';
 import ErrorMessage from '../../../app/common/form/ErrorMessage';
 import TextAreaInput from '../../../app/common/form/TextAreaInput';
 import { programmingLanguages } from '../../../app/common/options/programmingLanguagesOptions';
@@ -15,7 +15,6 @@ import { observer } from 'mobx-react-lite';
 import { Controlled as CodeMirror } from 'react-codemirror2'
 import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/material.css';
-import { render } from 'react-dom';
 require('codemirror/mode/xml/xml');
 require('codemirror/mode/javascript/javascript');
 
