@@ -8,6 +8,7 @@ export interface IExercise {
     initialCode: string;
     author: IUser;
     course: ICourse;
+    programmingLanguage: string;
 }
 
 export interface IExerciseDetails {
@@ -38,7 +39,6 @@ export interface ICorrectnessTest {
     outputs: string[];
 }
 
-
 export interface IAddExerciseFormValues2 {
     id: string;
     name: string;
@@ -66,6 +66,11 @@ export interface IAddExerciseFormValues {
     }
     programmingLanguage: string;
     correctnessTests: ICorrectnessTest[]
+}
+
+export interface ISolveExerciseForm {
+    id: string;
+    code: string;
 }
 
 export const convertValues = (values: IAddExerciseFormValues2) => {
