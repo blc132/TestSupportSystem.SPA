@@ -1,5 +1,5 @@
 import React, { Fragment, useContext } from 'react';
-import { Card, Divider } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import { IExercise } from '../../../app/models/exercise'
 import { Link } from 'react-router-dom';
 import { RootStoreContext } from '../../../app/stores/rootStore';
@@ -19,7 +19,7 @@ const ExerciseCard: React.FC<IProps> = ({ exercise }) => {
             <Card>
                 <Card.Content>
                     {user && user.role === STUDENT_ROLE && (
-                        <Card.Header>{exercise.name}</Card.Header>
+                        <Card.Header as={Link} to={`/exercise/solve/${exercise.id}`}>{exercise.name}</Card.Header>
                     )}
                     {user && (user.role === ADMINISTRATOR_ROLE || user.role === LECTURER_ROLE || user.role === MAINLECTURER_ROLE) && (
                         <Card.Header as={Link} to={`/exercise/${exercise.id}`}>{exercise.name}</Card.Header>
