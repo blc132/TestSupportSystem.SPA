@@ -10,7 +10,7 @@ interface IProps {
 }
 
 const NavBarStudent: React.FC<IProps> = ({ user }) => {
-    if (user.role == STUDENT_ROLE) {
+    if (user.role === STUDENT_ROLE) {
         return (
             <Fragment>
                 <Menu.Item >

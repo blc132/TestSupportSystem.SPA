@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, Fragment } from 'react';
-import { Card, Segment, Divider, Button, Input, Grid, Header } from 'semantic-ui-react';
+import { Segment, Grid, Header } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
@@ -21,7 +21,6 @@ const ExerciseDetails: React.FC<RouteComponentProps<DetailParams>> = ({
 }) => {
     const rootStore = useContext(RootStoreContext);
     const { exerciseDetails, loadExerciseDetails, loadingInitialExercise } = rootStore.exerciseStore;
-    const { user } = rootStore.userStore;
 
     useEffect(() => {
         loadExerciseDetails(match.params.id);
@@ -74,7 +73,7 @@ const ExerciseDetails: React.FC<RouteComponentProps<DetailParams>> = ({
                                         smartIndent: true,
                                         readOnly: true,
                                     }}
-                                    onBeforeChange={(editor, data, value) => {
+                                    onBeforeChange={() => {
                                     }}
                                     onChange={() => {
                                     }}

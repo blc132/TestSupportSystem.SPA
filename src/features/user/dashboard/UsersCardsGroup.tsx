@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
-import { Card, Image, Icon, Divider } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Card, Divider } from 'semantic-ui-react';
 import { IUser } from '../../../app/models/user'
 import UserCard from './UserCard';
 

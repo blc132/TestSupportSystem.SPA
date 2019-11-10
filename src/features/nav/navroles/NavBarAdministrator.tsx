@@ -16,7 +16,7 @@ interface IProps {
 const NavBarAdministrator: React.FC<IProps> = ({ user }) => {
     const rootStore = useContext(RootStoreContext);
     const { openModal } = rootStore.modalStore
-    if (user.role == ADMINISTRATOR_ROLE) {
+    if (user.role === ADMINISTRATOR_ROLE) {
         return (
             <Fragment>
                 <Menu.Item >

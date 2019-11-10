@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Card, Button, Segment, Divider } from 'semantic-ui-react';
+import { Card, Segment, Divider } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { Link } from 'react-router-dom';

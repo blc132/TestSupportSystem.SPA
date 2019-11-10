@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Card, Divider } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import { IUser } from '../../../app/models/user'
 
 interface IProps {

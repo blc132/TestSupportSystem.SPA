@@ -15,7 +15,7 @@ interface IProps {
 const NavBarLecturer: React.FC<IProps> = ({ user }) => {
     const rootStore = useContext(RootStoreContext);
     const { openModal } = rootStore.modalStore
-    if (user.role == LECTURER_ROLE) {
+    if (user.role === LECTURER_ROLE) {
         return (
             <Fragment>
                 <Menu.Item >

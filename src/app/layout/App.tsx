@@ -19,7 +19,7 @@ import GroupList from '../../features/group/dashboard/GroupList'
 import GroupDetails from '../../features/group/details/GroupDetails'
 import CourseList from '../../features/course/dashboard/CourseList'
 import UserList from '../../features/user/dashboard/UserList'
-import SolveExercise from '../../features/exercise/solve/SolveExercise'
+import SolveExerciseForm from '../../features/exercise/solve/SolveExerciseForm'
 import AddExerciseForm from '../../features/exercise/add/AddExerciseForm';
 import ExerciseList from '../../features/exercise/dashboard/ExerciseList';
 import ExerciseDetails from '../../features/exercise/details/ExerciseDetails';
@@ -56,7 +56,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                 <Route exact path='/courses' component={CourseList} />
                 <Route exact path='/users' component={UserList} />
                 <Route exact path='/group/:id' component={GroupDetails} />
-                <Route exact path='/exercise/solve' component={SolveExercise} />
+                <Route exact path='/exercise/solve/:id' component={SolveExerciseForm} />
                 <Route exact path='/exercise/add' component={AddExerciseForm} />
                 <Route exact path='/exercises' component={ExerciseList} />
                 <Route exact path='/exercise/:id' component={ExerciseDetails} />

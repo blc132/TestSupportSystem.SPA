@@ -218,7 +218,6 @@ const AddExerciseForm = () => {
                                     content='Dodaj'
                                 />
                             </div>
-
                         </Segment>
                     </Form>
                 )}

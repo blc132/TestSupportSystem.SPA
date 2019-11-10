@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, Fragment } from 'react';
-import { Card, Segment, Divider } from 'semantic-ui-react';
+import { Segment, Divider } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
-import { ADMINISTRATOR_ROLE, MAINLECTURER_ROLE, LECTURER_ROLE, STUDENT_ROLE } from '../../../app/common/roles/roles';
-import ExercisesCardsGroup from './ExercisesCardsGroup'
+import ExercisesCardsGroup from './ExercisesCardsGroup';
 
 const UserList: React.FC = () => {
     const rootStore = useContext(RootStoreContext);
@@ -22,7 +21,7 @@ const UserList: React.FC = () => {
             <Divider horizontal><h1>Zadania</h1></Divider>
             {courses.map(course => (
                 <Fragment>
-                    <ExercisesCardsGroup exercises={exercises.filter(exercise => exercise.course.name == course.name)} courseName={course.name} />
+                    <ExercisesCardsGroup exercises={exercises.filter(exercise => exercise.course.name === course.name)} courseName={course.name} />
                 </Fragment>
             ))}
         </Segment>

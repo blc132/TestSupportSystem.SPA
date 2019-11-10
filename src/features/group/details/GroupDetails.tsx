@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, Fragment } from 'react';
-import { Card, Segment, Divider, Button, Input, Grid } from 'semantic-ui-react';
+import { Segment, Divider, Grid } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
@@ -43,9 +43,9 @@ const GroupDetails: React.FC<RouteComponentProps<DetailParams>> = ({
           <Grid.Column width={13}>
             <Segment>
               <Fragment>
-                <UsersCardsGroup users={groupDetails.members.filter(x => x.role == MAINLECTURER_ROLE)} groupName="Główni prowadzący" />
-                <UsersCardsGroup users={groupDetails.members.filter(x => x.role == LECTURER_ROLE)} groupName="Prowadzący" />
-                <UsersCardsGroup users={groupDetails.members.filter(x => x.role == STUDENT_ROLE)} groupName="Studenci" />
+                <UsersCardsGroup users={groupDetails.members.filter(x => x.role === MAINLECTURER_ROLE)} groupName="Główni prowadzący" />
+                <UsersCardsGroup users={groupDetails.members.filter(x => x.role === LECTURER_ROLE)} groupName="Prowadzący" />
+                <UsersCardsGroup users={groupDetails.members.filter(x => x.role === STUDENT_ROLE)} groupName="Studenci" />
               </Fragment>
             </Segment>
           </Grid.Column>
