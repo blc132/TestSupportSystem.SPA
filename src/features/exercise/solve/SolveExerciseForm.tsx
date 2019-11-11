@@ -29,7 +29,7 @@ const SolveExerciseForm: React.FC<RouteComponentProps<SolveExerciseParams>> = ({
     history
 }) => {
     const rootStore = useContext(RootStoreContext);
-    const { exercise, loadExerciseToSolve, solveExercise, loadingInitialExercise, updateCode, code } = rootStore.exerciseStore;
+    const { exercise, loadExerciseToSolve, solveExercise, loadingInitialExercise, updateCode, code, submitting } = rootStore.exerciseStore;
 
     useEffect(() => {
         loadExerciseToSolve(match.params.id);
@@ -44,7 +44,6 @@ const SolveExerciseForm: React.FC<RouteComponentProps<SolveExerciseParams>> = ({
                     onSubmit={(values: ISolveExerciseForm) => {
                         values.id = exercise.id;
                         values.code = code;
-                        console.log(values)
                         solveExercise(values).catch(error => ({
                             [FORM_ERROR]: error
                         }))
@@ -52,9 +51,9 @@ const SolveExerciseForm: React.FC<RouteComponentProps<SolveExerciseParams>> = ({
                     validate={validate}
                     render={({
                         handleSubmit,
-                        submitting,
                         submitError,
                         invalid,
+                        dirtySinceLastSubmit,
                         pristine,
                     }) => (
                             <Form onSubmit={handleSubmit} error>
@@ -90,11 +89,11 @@ const SolveExerciseForm: React.FC<RouteComponentProps<SolveExerciseParams>> = ({
                                     <div className="send-button-div">
                                         <Button
                                             className='send-button'
+                                            disabled={(invalid && !dirtySinceLastSubmit) || submitting}
                                             loading={submitting}
                                             color='teal'
                                             content='Wyślij'
                                             type='submit'
-                                            disabled={invalid}
                                         />
                                     </div>
                                 </Segment>
