@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { IUser, IUserFormValues, IAddUserToGroupFormValues } from '../models/user';
 import { ICourse } from '../models/course';
 import { IGroupFormValues, IGroup, IGroupDetails } from '../models/group';
-import { IAddExerciseFormValues, IExercise, IExerciseDetails, ISolveExerciseForm } from '../models/exercise';
+import { IAddExerciseFormValues, IExercise, IExerciseDetails, ISolveExerciseForm, ISolvedExerciseDetails } from '../models/exercise';
 
 axios.defaults.baseURL = "https://localhost:44323/api"
 
@@ -95,6 +95,7 @@ const Exercises = {
   list: (): Promise<IExercise[]> => requests.get('/exercise'),
   getById: (id: string): Promise<IExerciseDetails> => requests.get('/exercise/' + id),
   solve: (exercise: ISolveExerciseForm) => requests.post('/exercise/solve', exercise),
+  getSolved: (id: string): Promise<ISolvedExerciseDetails> => requests.get('/exercise/getSolved/' + id),
 }
 
 export default {

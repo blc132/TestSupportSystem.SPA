@@ -23,6 +23,7 @@ import SolveExerciseForm from '../../features/exercise/solve/SolveExerciseForm'
 import AddExerciseForm from '../../features/exercise/add/AddExerciseForm';
 import ExerciseList from '../../features/exercise/dashboard/ExerciseList';
 import ExerciseDetails from '../../features/exercise/details/ExerciseDetails';
+import SolvedExercise from '../../features/exercise/solved/SolvedExercise';
 
 const App: React.FC<RouteComponentProps> = ({ location }) => {
   const rootStore = useContext(RootStoreContext);
@@ -60,6 +61,7 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                 <Route exact path='/exercise/add' component={AddExerciseForm} />
                 <Route exact path='/exercises' component={ExerciseList} />
                 <Route exact path='/exercise/:id' component={ExerciseDetails} />
+                <Route exact path='/exercise/solved/:id' component={SolvedExercise} />
                 <Route component={NotFound} />
               </Switch>
             </Container>

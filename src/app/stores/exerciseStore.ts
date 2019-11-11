@@ -2,7 +2,7 @@ import { RootStore } from './rootStore';
 import { observable, runInAction, action } from 'mobx';
 import agent from '../api/agent';
 import { toast } from 'react-toastify';
-import { IAddExerciseFormValues, IExercise, IExerciseDetails, ISolveExerciseForm } from '../models/exercise';
+import { IAddExerciseFormValues, IExercise, IExerciseDetails, ISolveExerciseForm, ISolvedExerciseDetails } from '../models/exercise';
 import { history } from '../..';
 
 export default class ExerciseStore {
@@ -13,6 +13,7 @@ export default class ExerciseStore {
 
     @observable exercise: IExercise | null = null;
     @observable exerciseDetails: IExerciseDetails | null = null;
+    @observable solvedExerciseDetails: ISolvedExerciseDetails | null = null;
     @observable exercises: IExercise[] = [];
     @observable submitting = false;
     @observable loadingInitialExercise = false;
@@ -41,10 +42,7 @@ export default class ExerciseStore {
         try {
             const exercises = await agent.Exercises.list();
             runInAction('loading exercises', () => {
-                exercises.forEach(exercise => {
-                    if (this.exercises.find(x => x.name === exercise.name) == null)
-                        this.exercises = [...this.exercises, exercise]
-                });
+                this.exercises = exercises
             });
             this.loadingInitialExercise = false;
         } catch (error) {
@@ -102,7 +100,7 @@ export default class ExerciseStore {
                 this.submitting = false;
             });
             toast.error('Błąd przesyłania danych');
-            console.log(error.response);
+            // console.log(error.response);
         }
         history.push('/exercises');
     };
@@ -116,6 +114,22 @@ export default class ExerciseStore {
             runInAction('update code error', () => {
             });
             console.log(error.response);
+        }
+    };
+
+    @action loadSolvedExerciseDetails = async (id: string) => {
+        this.loadingInitialExercise = true;
+        try {
+            const solvedExercise = await agent.Exercises.getSolved(id);
+            runInAction('loading exercise', () => {
+                this.solvedExerciseDetails = solvedExercise;
+                this.loadingInitialExercise = false;
+            });
+        } catch (error) {
+            runInAction('load exercise error', () => {
+                this.loadingInitialExercise = false;
+
+            });
         }
     };
 }
