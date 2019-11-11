@@ -13,19 +13,28 @@ const ExerciseCard: React.FC<IProps> = ({ exercise }) => {
 
     const rootStore = useContext(RootStoreContext);
     const { user } = rootStore.userStore;
+    const color = exercise.solved ? "green" : "black"
 
     return (
         <Fragment>
-            <Card>
+            <Card color={color}>
                 <Card.Content>
-                    {user && user.role === STUDENT_ROLE && (
+                    {user && user.role === STUDENT_ROLE && exercise.solved && (
+                        <Fragment>
+                            <Card.Header as={Link} to={`/exercise/solved/${exercise.id}`}>{exercise.name}</Card.Header>
+                            <Card.Meta>Rozwiązane</Card.Meta>
+                        </Fragment>
+                    )}
+                    {user && user.role === STUDENT_ROLE && !exercise.solved && (
                         <Card.Header as={Link} to={`/exercise/solve/${exercise.id}`}>{exercise.name}</Card.Header>
                     )}
                     {user && (user.role === ADMINISTRATOR_ROLE || user.role === LECTURER_ROLE || user.role === MAINLECTURER_ROLE) && (
-                        <Card.Header as={Link} to={`/exercise/${exercise.id}`}>{exercise.name}</Card.Header>
+                        <Fragment>
+                            <Card.Header color="black" as={Link} to={`/exercise/${exercise.id}`}>{exercise.name}</Card.Header>
+                            <Card.Meta>{exercise.author.firstName + " " + exercise.author.lastName}</Card.Meta>
+                            <Card.Meta>{exercise.author.email}</Card.Meta>
+                        </Fragment>
                     )}
-                    <Card.Meta>{exercise.author.firstName + " " + exercise.author.lastName}</Card.Meta>
-                    <Card.Meta>{exercise.author.email}</Card.Meta>
                 </Card.Content>
             </Card>
         </Fragment>
