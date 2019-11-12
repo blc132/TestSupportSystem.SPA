@@ -14,20 +14,6 @@ const NavBarStudent: React.FC<IProps> = ({ user }) => {
         return (
             <Fragment>
                 <Menu.Item >
-                    <Dropdown pointing='top left' text="Kursy">
-                        <Dropdown.Menu>
-                            <Dropdown.Item text='Przeglądaj' icon='list' as={NavLink} exact to='/courses' />
-                        </Dropdown.Menu>
-                    </Dropdown>
-                </Menu.Item >
-                <Menu.Item >
-                    <Dropdown pointing='top left' text="Zadania">
-                        <Dropdown.Menu>
-                            <Dropdown.Item text='Przeglądaj' icon='list' as={NavLink} exact to='/exercises' />
-                        </Dropdown.Menu>
-                    </Dropdown>
-                </Menu.Item>
-                <Menu.Item >
                     <Dropdown pointing='top left' text="Grupy">
                         <Dropdown.Menu>
                             <Dropdown.Item text='Przeglądaj' icon='list' as={NavLink} exact to='/groups' />
