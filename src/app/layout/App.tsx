@@ -57,11 +57,11 @@ const App: React.FC<RouteComponentProps> = ({ location }) => {
                 <Route exact path='/courses' component={CourseList} />
                 <Route exact path='/users' component={UserList} />
                 <Route exact path='/group/:id' component={GroupDetails} />
-                <Route exact path='/exercise/solve/:id' component={SolveExerciseForm} />
+                <Route exact path='/exercise/solve/:id/group/:groupId' component={SolveExerciseForm} />
                 <Route exact path='/exercise/add' component={AddExerciseForm} />
                 <Route exact path='/exercises' component={ExerciseList} />
                 <Route exact path='/exercise/:id' component={ExerciseDetails} />
-                <Route exact path='/exercise/solved/:id' component={SolvedExercise} />
+                <Route exact path='/exercise/solved/:id/group/:groupId' component={SolvedExercise} />
                 <Route component={NotFound} />
               </Switch>
             </Container>

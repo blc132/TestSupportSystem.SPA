@@ -2,8 +2,9 @@ import { RootStore } from './rootStore';
 import { observable, runInAction, action } from 'mobx';
 import agent from '../api/agent';
 import { toast } from 'react-toastify';
-import { IGroup, IGroupFormValues, IGroupDetails } from '../models/group';
-import { IAddUserToGroupFormValues } from '../models/user';
+import { IGroup, IGroupFormValues, IGroupDetails, IAddExerciseToGroupForm } from '../models/group';
+import { IAddUserToGroupFormValues } from '../models/group';
+import { history } from '../..';
 
 
 
@@ -18,7 +19,6 @@ export default class GroupStore {
   @observable groups: IGroup[] = [];
   @observable submitting = false;
   @observable loadingInitial = false;
-
 
   @action createGroup = async (group: IGroupFormValues) => {
     this.submitting = true;
@@ -95,6 +95,30 @@ export default class GroupStore {
     } catch (error) {
 
       runInAction('adding user to group list error', () => {
+        this.submitting = false;
+      });
+
+      toast.error(JSON.stringify(error.data.errors).replace(/"/g, '').replace(/{/g, '').replace(/}/g, ''));
+      throw error;
+    }
+  };
+
+  @action addExercise = async (values: IAddExerciseToGroupForm) => {
+    this.submitting = true;
+    try {
+      await agent.Groups.addExerciseByName(values);
+      runInAction('add exercise to group', () => {
+        this.submitting = false;
+      });
+      const exercise = this.rootStore.exerciseStore.exercises.find(x => x.name == values.exerciseName)
+      runInAction('adding exercise to group list', () => {
+        if (this.groupDetails && exercise)
+          this.groupDetails.exercises = [...this.groupDetails.exercises, exercise]
+      });
+      toast.info('Dodano zadanie');
+    } catch (error) {
+
+      runInAction('adding exercise to group list error', () => {
         this.submitting = false;
       });
 

@@ -2,7 +2,7 @@ import { RootStore } from './rootStore';
 import { observable, runInAction, action } from 'mobx';
 import agent from '../api/agent';
 import { toast } from 'react-toastify';
-import { IAddExerciseFormValues, IExercise, IExerciseDetails, ISolveExerciseForm, ISolvedExerciseDetails } from '../models/exercise';
+import { IAddExerciseFormValues, IExercise, IExerciseDetails, ISolveExerciseForm, ISolvedExerciseDetails, IExerciseOverview } from '../models/exercise';
 import { history } from '../..';
 
 export default class ExerciseStore {
@@ -14,7 +14,7 @@ export default class ExerciseStore {
     @observable exercise: IExercise | null = null;
     @observable exerciseDetails: IExerciseDetails | null = null;
     @observable solvedExerciseDetails: ISolvedExerciseDetails | null = null;
-    @observable exercises: IExercise[] = [];
+    @observable exercises: IExerciseOverview[] = [];
     @observable submitting = false;
     @observable loadingInitialExercise = false;
     @observable code: string = ""
@@ -69,27 +69,27 @@ export default class ExerciseStore {
     };
 
     @action loadExerciseToSolve = async (id: string) => {
-        const exercise = this.exercises.find(x => x.id === id)
-        if (exercise != undefined) {
+
+        try {
+            const exercise = await agent.Exercises.getById(id);
             runInAction('loading exercise', () => {
                 this.exercise = exercise;
-                this.code = exercise.initialCode;
             });
-        }
-        else {
-            await this.loadExercises();
-            const exercise = this.exercises.find(x => x.id === id)
-            runInAction('loading exercise', () => {
-                this.exercise = exercise == undefined ? null : exercise;
-                this.code = exercise == undefined ? "" : exercise.initialCode;
+        } catch (error) {
+            runInAction('loading exercise error', () => {
+                this.submitting = false;
             });
+            toast.error('Błąd przesyłania danych');
+            console.log(error.response);
         }
+
     };
 
     @action solveExercise = async (exercise: ISolveExerciseForm) => {
         this.submitting = true;
         console.log(exercise);
         try {
+            exercise.groupId = this.rootStore.groupStore.groupDetails!.id;
             await agent.Exercises.solve(exercise);
             runInAction('solve exercise', () => {
                 this.submitting = false;
@@ -102,7 +102,7 @@ export default class ExerciseStore {
             toast.error('Błąd przesyłania danych');
             // console.log(error.response);
         }
-        history.push('/exercises');
+        history.push('/group/' + exercise.groupId);
     };
 
     @action updateCode = async (code: string) => {
@@ -120,7 +120,8 @@ export default class ExerciseStore {
     @action loadSolvedExerciseDetails = async (id: string) => {
         this.loadingInitialExercise = true;
         try {
-            const solvedExercise = await agent.Exercises.getSolved(id);
+            const groupId = this.rootStore.groupStore.groupDetails!.id;
+            const solvedExercise = await agent.Exercises.getSolved(id, groupId);
             runInAction('loading exercise', () => {
                 this.solvedExerciseDetails = solvedExercise;
                 this.loadingInitialExercise = false;

@@ -9,7 +9,7 @@ export interface IExercise {
     author: IUser;
     course: ICourse;
     programmingLanguage: string;
-    solved: boolean,
+    solved?: boolean,
 }
 
 export interface IExerciseDetails {
@@ -21,18 +21,6 @@ export interface IExerciseDetails {
     course: ICourse;
     programmingLanguage: string;
     correctnessTests: ICorrectnessTest[];
-}
-
-export interface IExercise {
-    id: string;
-    name: string;
-    content: string;
-    initialCode: string;
-    author: IUser;
-    course: {
-        id: string;
-        name: string;
-    }
 }
 
 export interface ICorrectnessTest {
@@ -71,6 +59,7 @@ export interface IAddExerciseFormValues {
 
 export interface ISolveExerciseForm {
     id: string;
+    groupId: string;
     code: string;
 }
 
@@ -92,6 +81,15 @@ export interface ICorrectnessTestResult {
     error: string;
     status: string;
 
+}
+
+export interface IExerciseOverview {
+    id: string;
+    name: string;
+    author: IUser;
+    programmingLanguage: string;
+    course: ICourse;
+    solved?: boolean;
 }
 
 export const convertValues = (values: IAddExerciseFormValues2) => {

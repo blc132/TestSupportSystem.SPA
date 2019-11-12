@@ -3,7 +3,7 @@ import { Form as FinalForm, Field } from 'react-final-form';
 import { Form, Button } from 'semantic-ui-react';
 import TextInput from '../../../app/common/form/TextInput';
 import { RootStoreContext } from '../../../app/stores/rootStore';
-import { IAddUserToGroupFormValues } from '../../../app/models/group';
+import { IAddUserToGroupFormValues, IAddExerciseToGroupForm } from '../../../app/models/group';
 import { FORM_ERROR } from 'final-form';
 import { combineValidators, isRequired, composeValidators, createValidator } from 'revalidate';
 import ErrorMessage from '../../../app/common/form/ErrorMessage';
@@ -18,26 +18,23 @@ const isValidEmail = createValidator(
 )
 
 const validate = combineValidators({
-    email: composeValidators(
-        isRequired({ message: 'Wymagane' }),
-        isValidEmail
-    )(),
+    exerciseName: isRequired({ message: 'Wymagane' }),
 });
 
 interface IProps {
     groupId: string;
 }
 
-const AddUserToGroupForm: React.FC<IProps> = ({ groupId }) => {
+const AddExerciseToGroupForm: React.FC<IProps> = ({ groupId }) => {
     const rootStore = useContext(RootStoreContext);
-    const { addUser } = rootStore.groupStore;
+    const { addExercise } = rootStore.groupStore;
 
     return (
         <FinalForm
-            onSubmit={(values: IAddUserToGroupFormValues) => {
+            onSubmit={(values: IAddExerciseToGroupForm) => {
                 values.groupId = groupId;
 
-                addUser(values).catch(error => ({
+                addExercise(values).catch(error => ({
                     [FORM_ERROR]: error
                 }))
             }}
@@ -51,7 +48,7 @@ const AddUserToGroupForm: React.FC<IProps> = ({ groupId }) => {
                 dirtySinceLastSubmit
             }) => (
                     <Form onSubmit={handleSubmit} error>
-                        <Field name='email' component={TextInput} placeholder='Email' />
+                        <Field name='exerciseName' component={TextInput} placeholder='Nazwa zadania' />
                         {submitError}
                         {submitError && (
                             <ErrorMessage
@@ -70,4 +67,4 @@ const AddUserToGroupForm: React.FC<IProps> = ({ groupId }) => {
         />
     );
 };
-export default AddUserToGroupForm;
+export default AddExerciseToGroupForm;

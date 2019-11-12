@@ -1,18 +1,19 @@
 import React, { Fragment, useContext } from 'react';
 import { Card } from 'semantic-ui-react';
-import { IExercise } from '../../../app/models/exercise'
+import { IExercise, IExerciseOverview } from '../../../app/models/exercise'
 import { Link } from 'react-router-dom';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { ADMINISTRATOR_ROLE, LECTURER_ROLE, MAINLECTURER_ROLE, STUDENT_ROLE } from '../../../app/common/roles/roles';
 
 interface IProps {
-    exercise: IExercise
+    exercise: IExerciseOverview
 }
 
 const ExerciseCard: React.FC<IProps> = ({ exercise }) => {
 
     const rootStore = useContext(RootStoreContext);
     const { user } = rootStore.userStore;
+    const { groupDetails } = rootStore.groupStore;
     const color = exercise.solved ? "green" : "black"
 
     return (
@@ -21,12 +22,12 @@ const ExerciseCard: React.FC<IProps> = ({ exercise }) => {
                 <Card.Content>
                     {user && user.role === STUDENT_ROLE && exercise.solved && (
                         <Fragment>
-                            <Card.Header as={Link} to={`/exercise/solved/${exercise.id}`}>{exercise.name}</Card.Header>
+                            <Card.Header as={Link} to={`/exercise/solved/${exercise.id}/group/${groupDetails!.id}`}>{exercise.name}</Card.Header>
                             <Card.Meta>Rozwiązane</Card.Meta>
                         </Fragment>
                     )}
                     {user && user.role === STUDENT_ROLE && !exercise.solved && (
-                        <Card.Header as={Link} to={`/exercise/solve/${exercise.id}`}>{exercise.name}</Card.Header>
+                        <Card.Header as={Link} to={`/exercise/solve/${exercise.id}/group/${groupDetails!.id}`}>{exercise.name}</Card.Header>
                     )}
                     {user && (user.role === ADMINISTRATOR_ROLE || user.role === LECTURER_ROLE || user.role === MAINLECTURER_ROLE) && (
                         <Fragment>

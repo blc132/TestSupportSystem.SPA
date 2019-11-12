@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from 'axios';
 import { history } from '../..';
 import { toast } from 'react-toastify';
-import { IUser, IUserFormValues, IAddUserToGroupFormValues } from '../models/user';
+import { IUser, IUserFormValues } from '../models/user';
+import { IAddUserToGroupFormValues, IAddExerciseToGroupForm } from '../models/group';
 import { ICourse } from '../models/course';
 import { IGroupFormValues, IGroup, IGroupDetails } from '../models/group';
 import { IAddExerciseFormValues, IExercise, IExerciseDetails, ISolveExerciseForm, ISolvedExerciseDetails } from '../models/exercise';
@@ -87,6 +88,7 @@ const Groups = {
   getByName: (name: string): Promise<IGroup> => requests.get('/group/getbyname/' + name),
   getById: (id: string): Promise<IGroupDetails> => requests.get('/group/' + id),
   addUserByEmail: (values: IAddUserToGroupFormValues) => requests.post("/group/" + values.groupId + "/userEmail/" + values.email, {}),
+  addExerciseByName: (values: IAddExerciseToGroupForm) => requests.post("/group/" + values.groupId + "/exerciseName/" + values.exerciseName, {}),
 
 }
 
@@ -95,7 +97,7 @@ const Exercises = {
   list: (): Promise<IExercise[]> => requests.get('/exercise'),
   getById: (id: string): Promise<IExerciseDetails> => requests.get('/exercise/' + id),
   solve: (exercise: ISolveExerciseForm) => requests.post('/exercise/solve', exercise),
-  getSolved: (id: string): Promise<ISolvedExerciseDetails> => requests.get('/exercise/getSolved/' + id),
+  getSolved: (id: string, groupId: string): Promise<ISolvedExerciseDetails> => requests.get('/exercise/getSolved/' + id + '/group/' + groupId),
 }
 
 export default {

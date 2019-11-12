@@ -212,7 +212,7 @@ const AddExerciseForm = () => {
                             <div className="send-button-div">
                                 <Button
                                     className='send-button'
-                                    disabled={(invalid && !dirtySinceLastSubmit) || pristine}
+                                    disabled={(invalid && !dirtySinceLastSubmit) || submitting}
                                     loading={submitting}
                                     color='teal'
                                     content='Dodaj'

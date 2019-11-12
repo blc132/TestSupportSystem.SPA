@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
 import { Card, Divider } from 'semantic-ui-react';
-import { IExercise } from '../../../app/models/exercise';
+import { IExercise, IExerciseOverview } from '../../../app/models/exercise';
 import ExerciseCard from './ExerciseCard';
 
 interface IProps {
-    exercises: IExercise[]
+    exercises: IExerciseOverview[]
     courseName: string
 }
 
