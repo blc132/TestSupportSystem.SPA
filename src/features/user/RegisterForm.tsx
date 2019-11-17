@@ -113,7 +113,7 @@ const RegisterForm = () => {
                         />
                         <Field
                             component={SelectInput}
-                            options={roles}
+                            options={[{ key: "Student", text: "Student", value: "Student" }]}
                             name='role'
                             placeholder='Rola'
                         />
