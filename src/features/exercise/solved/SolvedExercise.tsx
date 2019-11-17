@@ -11,7 +11,9 @@ require('codemirror/mode/xml/xml');
 require('codemirror/mode/javascript/javascript');
 
 interface DetailParams {
-    id: string;
+    exerciseId: string;
+    groupId: string;
+    studentId: string;
 }
 
 const SolvedExercise: React.FC<RouteComponentProps<DetailParams>> = ({
@@ -22,8 +24,8 @@ const SolvedExercise: React.FC<RouteComponentProps<DetailParams>> = ({
     const { solvedExerciseDetails, loadSolvedExerciseDetails, loadingInitialExercise } = rootStore.exerciseStore;
 
     useEffect(() => {
-        loadSolvedExerciseDetails(match.params.id);
-    }, [loadSolvedExerciseDetails, match.params.id, history]);
+        loadSolvedExerciseDetails(match.params.exerciseId, match.params.groupId, match.params.studentId);
+    }, [loadSolvedExerciseDetails, match.params.exerciseId, history]);
 
     if (loadingInitialExercise) return <LoadingComponent content='Ładowanie zadania...' />;
 

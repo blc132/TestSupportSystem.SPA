@@ -17,7 +17,7 @@ const UsersCardsGroup: React.FC<IProps> = ({ users, groupName }) => {
                 <Divider horizontal>{groupName}</Divider>
                 <Card.Group>
                     {users.map((user) => (
-                        <UserCard user={user} />
+                        <UserCard student={user} />
                     ))}
                 </Card.Group>
             </Fragment>

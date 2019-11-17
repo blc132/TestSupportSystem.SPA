@@ -7,9 +7,10 @@ import { ADMINISTRATOR_ROLE, LECTURER_ROLE, MAINLECTURER_ROLE, STUDENT_ROLE } fr
 
 interface IProps {
     exercise: IExerciseOverview
+    studentId?: string
 }
 
-const ExerciseCard: React.FC<IProps> = ({ exercise }) => {
+const ExerciseCard: React.FC<IProps> = ({ exercise, studentId }) => {
 
     const rootStore = useContext(RootStoreContext);
     const { user } = rootStore.userStore;
@@ -29,11 +30,15 @@ const ExerciseCard: React.FC<IProps> = ({ exercise }) => {
                     {user && user.role === STUDENT_ROLE && !exercise.solved && (
                         <Card.Header as={Link} to={`/exercise/solve/${exercise.id}/group/${groupDetails!.id}`}>{exercise.name}</Card.Header>
                     )}
-                    {user && (user.role === ADMINISTRATOR_ROLE || user.role === LECTURER_ROLE || user.role === MAINLECTURER_ROLE) && (
+                    {user && (user.role === ADMINISTRATOR_ROLE || user.role === LECTURER_ROLE || user.role === MAINLECTURER_ROLE) && exercise.solved && (
+                        <Fragment>
+                            <Card.Header color="black" as={Link} to={`/exercise/solved/${exercise.id}/group/${groupDetails!.id}`}>{exercise.name}</Card.Header>
+                            <Card.Meta>Rozwiązane</Card.Meta>
+                        </Fragment>
+                    )}
+                    {user && (user.role === ADMINISTRATOR_ROLE || user.role === LECTURER_ROLE || user.role === MAINLECTURER_ROLE) && !exercise.solved && (
                         <Fragment>
                             <Card.Header color="black" as={Link} to={`/exercise/${exercise.id}`}>{exercise.name}</Card.Header>
-                            <Card.Meta>{exercise.author.firstName + " " + exercise.author.lastName}</Card.Meta>
-                            <Card.Meta>{exercise.author.email}</Card.Meta>
                         </Fragment>
                     )}
                 </Card.Content>

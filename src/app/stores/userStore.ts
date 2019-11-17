@@ -1,5 +1,5 @@
 import { observable, computed, action, runInAction } from 'mobx';
-import { IUser, IUserFormValues } from '../models/user';
+import { IUser, IUserFormValues, IUserDetails } from '../models/user';
 import agent from '../api/agent';
 import { RootStore } from './rootStore';
 import { history } from '../..';
@@ -13,6 +13,7 @@ export default class UserStore {
 
   @observable user: IUser | null = null;
   @observable users: IUser[] = [];
+  @observable userDetails: IUserDetails | null = null
   @observable submitting = false;
   @observable loadingInitial = false;
 
@@ -94,6 +95,22 @@ export default class UserStore {
           if (this.users.find(x => x.email == user.email) == null)
             this.users = [...this.users, user]
         });
+        this.users = this.users.sort((a, b) => a.lastName.localeCompare(b.lastName))
+      });
+      this.loadingInitial = false;
+    } catch (error) {
+      runInAction('load users error', () => {
+        this.loadingInitial = false;
+      });
+    }
+  };
+
+  @action loadUserDetails = async (email: string) => {
+    this.loadingInitial = true;
+    try {
+      const userDetails = await agent.Users.getDetailsByEmail(email);
+      runInAction('loading user details', () => {
+        this.userDetails = userDetails;
       });
       this.loadingInitial = false;
     } catch (error) {

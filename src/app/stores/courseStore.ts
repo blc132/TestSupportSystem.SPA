@@ -29,6 +29,7 @@ export default class CourseStore {
       this.rootStore.modalStore.closeModal();
       runInAction('adding group to list', () => {
         this.courses = [...this.courses, course]
+        this.courses = this.courses.sort((a, b) => a.name.localeCompare(b.name))
       });
       toast.info('Dodano kurs');
     } catch (error) {
@@ -48,6 +49,7 @@ export default class CourseStore {
           if (this.courseOptions.find(x => x.key == course.id) == null)
             this.courseOptions = [...this.courseOptions, { key: course.id, value: course.id, text: course.name }]
         });
+        this.courseOptions = this.courseOptions.sort((a, b) => a.text.localeCompare(b.text))
       });
     } catch (error) {
       runInAction('load courses options error', () => {
@@ -63,6 +65,7 @@ export default class CourseStore {
           if (this.courses.find(x => x.name == course.name) == null)
             this.courses = [...this.courses, course]
         });
+        this.courses = this.courses.sort((a, b) => a.name.localeCompare(b.name))
       });
     } catch (error) {
       runInAction('load courses error', () => {

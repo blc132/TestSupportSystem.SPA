@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { IGroup, IGroupFormValues, IGroupDetails, IAddExerciseToGroupForm } from '../models/group';
 import { IAddUserToGroupFormValues } from '../models/group';
 import { history } from '../..';
+import ExerciseStore from './exerciseStore';
 
 
 
@@ -17,6 +18,7 @@ export default class GroupStore {
   @observable group: IGroup | null = null;
   @observable groupDetails: IGroupDetails | null = null;
   @observable groups: IGroup[] = [];
+  @observable groupId: string = "";
   @observable submitting = false;
   @observable loadingInitial = false;
 
@@ -49,10 +51,8 @@ export default class GroupStore {
     try {
       const groups = await agent.Groups.list();
       runInAction('loading groups', () => {
-        groups.forEach(group => {
-          if (this.groups.find(x => x.name == group.name) == null)
-            this.groups = [...this.groups, group]
-        });
+        this.groups = groups;
+        this.groups = this.groups.sort((a, b) => a.name.localeCompare(b.name))
       });
       this.loadingInitial = false;
     } catch (error) {
@@ -68,6 +68,8 @@ export default class GroupStore {
       const group = await agent.Groups.getById(id);
       runInAction('loading group', () => {
         this.groupDetails = group;
+        this.groupDetails.members = this.groupDetails.members.sort((a, b) => a.lastName.localeCompare(b.lastName))
+        this.groupDetails.exercises = this.groupDetails.exercises.sort((a, b) => a.name.localeCompare(b.name))
         this.loadingInitial = false;
       });
     } catch (error) {
@@ -110,7 +112,18 @@ export default class GroupStore {
       runInAction('add exercise to group', () => {
         this.submitting = false;
       });
-      const exercise = this.rootStore.exerciseStore.exercises.find(x => x.name == values.exerciseName)
+      let exercise = this.rootStore.exerciseStore.exercises.find(x => x.name == values.exerciseName)
+
+      if (!exercise) {
+        const exercises = await agent.Exercises.list();
+        runInAction('adding exercise to group list', () => {
+          this.rootStore.exerciseStore.exercises = exercises
+        });
+      }
+
+      exercise = this.rootStore.exerciseStore.exercises.find(x => x.name == values.exerciseName);
+
+      console.log(exercise)
       runInAction('adding exercise to group list', () => {
         if (this.groupDetails && exercise)
           this.groupDetails.exercises = [...this.groupDetails.exercises, exercise]
@@ -126,6 +139,22 @@ export default class GroupStore {
       throw error;
     }
   };
+
+
+  @action setGroupId = async (groupId: string) => {
+    this.loadingInitial = true;
+    try {
+      runInAction('set groupId', () => {
+        this.groupId = groupId;
+        this.loadingInitial = false;
+      });
+    } catch (error) {
+      runInAction('set groupId error', () => {
+        this.loadingInitial = false;
+
+      });
+    }
+  }
 }
 
 

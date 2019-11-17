@@ -44,6 +44,7 @@ export default class ExerciseStore {
             runInAction('loading exercises', () => {
                 this.exercises = exercises
             });
+            this.exercises = this.exercises.sort((a, b) => a.name.localeCompare(b.name));
             this.loadingInitialExercise = false;
         } catch (error) {
             runInAction('load exercises error', () => {
@@ -74,6 +75,7 @@ export default class ExerciseStore {
             const exercise = await agent.Exercises.getById(id);
             runInAction('loading exercise', () => {
                 this.exercise = exercise;
+                this.code = exercise.initialCode
             });
         } catch (error) {
             runInAction('loading exercise error', () => {
@@ -117,11 +119,12 @@ export default class ExerciseStore {
         }
     };
 
-    @action loadSolvedExerciseDetails = async (id: string) => {
+    @action loadSolvedExerciseDetails = async (exerciseId: string, groupId: string, studentId: string) => {
         this.loadingInitialExercise = true;
         try {
-            const groupId = this.rootStore.groupStore.groupDetails!.id;
-            const solvedExercise = await agent.Exercises.getSolved(id, groupId);
+            const solvedExercise = await agent.Exercises.getSolved(exerciseId, groupId, studentId);
+            console.log("xD")
+
             runInAction('loading exercise', () => {
                 this.solvedExerciseDetails = solvedExercise;
                 this.loadingInitialExercise = false;

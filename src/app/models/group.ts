@@ -1,6 +1,6 @@
 import { ICourse } from "./course";
 import { IUser } from "./user";
-import { IExerciseOverview } from "./exercise";
+import { IExerciseOverview, IExercise } from "./exercise";
 
 export interface IGroup {
     id: string;
@@ -29,4 +29,12 @@ export interface IAddUserToGroupFormValues {
 export interface IAddExerciseToGroupForm {
     exerciseName: string;
     groupId: string;
+}
+
+export interface IUserGroupDetails {
+    id: string;
+    name: string;
+    course: ICourse;
+    exercises: IExerciseOverview[];
+
 }
