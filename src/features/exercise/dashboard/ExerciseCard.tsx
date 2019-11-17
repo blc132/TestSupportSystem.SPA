@@ -1,6 +1,6 @@
 import React, { Fragment, useContext } from 'react';
 import { Card } from 'semantic-ui-react';
-import { IExercise, IExerciseOverview } from '../../../app/models/exercise'
+import { IExerciseOverview } from '../../../app/models/exercise'
 import { Link } from 'react-router-dom';
 import { RootStoreContext } from '../../../app/stores/rootStore';
 import { ADMINISTRATOR_ROLE, LECTURER_ROLE, MAINLECTURER_ROLE, STUDENT_ROLE } from '../../../app/common/roles/roles';
@@ -10,7 +10,7 @@ interface IProps {
     studentId?: string
 }
 
-const ExerciseCard: React.FC<IProps> = ({ exercise, studentId }) => {
+const ExerciseCard: React.FC<IProps> = ({ exercise }) => {
 
     const rootStore = useContext(RootStoreContext);
     const { user } = rootStore.userStore;

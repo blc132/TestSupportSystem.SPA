@@ -8,7 +8,6 @@ import AddUserToGroupForm from '../../group/adduser/AddUserToGroupForm'
 import AddExerciseToGroupForm from '../../group/addexercise/AddExerciseToGroupForm'
 import { ADMINISTRATOR_ROLE, MAINLECTURER_ROLE, LECTURER_ROLE, STUDENT_ROLE } from '../../../app/common/roles/roles';
 import UsersCardsGroup from '../../user/dashboard/UsersCardsGroup';
-import ExerciseList from '../../exercise/dashboard/ExerciseList';
 import ExercisesCardsGroup from '../../exercise/dashboard/ExercisesCardsGroup';
 
 interface DetailParams {

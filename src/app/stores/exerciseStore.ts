@@ -102,7 +102,7 @@ export default class ExerciseStore {
                 this.submitting = false;
             });
             toast.error('Błąd przesyłania danych');
-            // console.log(error.response);
+            console.log(error.response);
         }
         history.push('/group/' + exercise.groupId);
     };
@@ -123,7 +123,6 @@ export default class ExerciseStore {
         this.loadingInitialExercise = true;
         try {
             const solvedExercise = await agent.Exercises.getSolved(exerciseId, groupId, studentId);
-            console.log("xD")
 
             runInAction('loading exercise', () => {
                 this.solvedExerciseDetails = solvedExercise;

@@ -1,16 +1,10 @@
 import React, { useContext, useEffect, Fragment } from 'react';
-import { Segment, Divider, Grid, Card, Button } from 'semantic-ui-react';
+import { Segment, Divider, Card } from 'semantic-ui-react';
 import { observer } from 'mobx-react-lite';
 import { RouteComponentProps } from 'react-router';
 import LoadingComponent from '../../../app/layout/LoadingComponent';
 import { RootStoreContext } from '../../../app/stores/rootStore';
-import AddUserToGroupForm from '../../group/adduser/AddUserToGroupForm'
-import AddExerciseToGroupForm from '../../group/addexercise/AddExerciseToGroupForm'
-import { ADMINISTRATOR_ROLE, MAINLECTURER_ROLE, LECTURER_ROLE, STUDENT_ROLE } from '../../../app/common/roles/roles';
-import UsersCardsGroup from '../../user/dashboard/UsersCardsGroup';
-import ExerciseList from '../../exercise/dashboard/ExerciseList';
-import ExercisesCardsGroup from '../../exercise/dashboard/ExercisesCardsGroup';
-import UserGroup from '../../group/usergroup/UserGroup'
+import { ADMINISTRATOR_ROLE, MAINLECTURER_ROLE, LECTURER_ROLE } from '../../../app/common/roles/roles';
 import { Link } from 'react-router-dom';
 
 interface DetailParams {

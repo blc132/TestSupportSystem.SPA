@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Card, Divider } from 'semantic-ui-react';
-import { IExercise, IExerciseOverview } from '../../../app/models/exercise';
+import { IExerciseOverview } from '../../../app/models/exercise';
 import ExerciseCard from '../../exercise/dashboard/ExerciseCard';
 
 interface IProps {

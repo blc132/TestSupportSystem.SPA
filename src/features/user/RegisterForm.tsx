@@ -7,7 +7,6 @@ import { IUserFormValues } from '../../app/models/user';
 import { FORM_ERROR } from 'final-form';
 import { combineValidators, isRequired, createValidator, composeValidators } from 'revalidate';
 import ErrorMessage from '../../app/common/form/ErrorMessage';
-import { roles } from '../../app/common/options/roleOptions';
 import SelectInput from '../../app/common/form/SelectInput';
 
 

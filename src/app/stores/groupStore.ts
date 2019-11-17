@@ -4,10 +4,6 @@ import agent from '../api/agent';
 import { toast } from 'react-toastify';
 import { IGroup, IGroupFormValues, IGroupDetails, IAddExerciseToGroupForm } from '../models/group';
 import { IAddUserToGroupFormValues } from '../models/group';
-import { history } from '../..';
-import ExerciseStore from './exerciseStore';
-
-
 
 export default class GroupStore {
   rootStore: RootStore;
