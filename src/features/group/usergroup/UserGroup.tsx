@@ -15,7 +15,7 @@ const UserGroup: React.FC<IProps> = ({ exercises, groupName, studentId }) => {
             <Divider horizontal>{groupName}</Divider>
             <Card.Group>
                 {exercises.map((exercise) => (
-                    <ExerciseCard exercise={exercise} studentId={studentId} />
+                    <ExerciseCard exercise={exercise} />
                 ))}
             </Card.Group>
         </Fragment>

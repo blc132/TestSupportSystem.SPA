@@ -20,6 +20,10 @@ interface SolveExerciseParams {
     id: string;
 }
 
+const validate = combineValidators({
+    // code: isRequired({ message: 'Wymagane' }),
+});
+
 const SolveExerciseForm: React.FC<RouteComponentProps<SolveExerciseParams>> = ({
     match,
     history

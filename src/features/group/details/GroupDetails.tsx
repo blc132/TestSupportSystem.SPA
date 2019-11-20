@@ -61,7 +61,13 @@ const GroupDetails: React.FC<RouteComponentProps<DetailParams>> = ({
           <Grid.Column width={13}>
             <Fragment>
               <Divider horizontal><h3>Zadania</h3></Divider>
-              <ExercisesCardsGroup exercises={groupDetails.exercises} courseName="" />
+              {user && (user.role === ADMINISTRATOR_ROLE || user.role === LECTURER_ROLE || user.role === MAINLECTURER_ROLE) && (
+                <ExercisesCardsGroup exercises={groupDetails.exercises} courseName="" />
+              )}
+
+              {user && (user.role === STUDENT_ROLE) && (
+                <ExercisesCardsGroup exercises={groupDetails.exercises} courseName="" />
+              )}
             </Fragment>
           </Grid.Column>
           {user && (user.role === ADMINISTRATOR_ROLE || user.role === LECTURER_ROLE || user.role === MAINLECTURER_ROLE) && (

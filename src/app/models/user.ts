@@ -1,6 +1,7 @@
 import { IUserGroupDetails } from "./group";
 
 export interface IUser {
+    id: string;
     userName: string;
     firstName: string;
     lastName: string;
@@ -10,6 +11,7 @@ export interface IUser {
 }
 
 export interface IUserFormValues {
+    id: string;
     email: string;
     password: string;
     firstName: string;

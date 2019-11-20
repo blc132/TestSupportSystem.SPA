@@ -14,6 +14,7 @@ export default class UserStore {
   @observable user: IUser | null = null;
   @observable users: IUser[] = [];
   @observable userDetails: IUserDetails | null = null
+  @observable studentId: string = ""
   @observable submitting = false;
   @observable loadingInitial = false;
 
@@ -27,6 +28,7 @@ export default class UserStore {
       runInAction(() => {
         this.user = user;
         this.user.role = user.role;
+        this.studentId = user.id;
       });
       this.rootStore.commonStore.setToken(user.token!);
       this.rootStore.modalStore.closeModal();
@@ -111,6 +113,7 @@ export default class UserStore {
       const userDetails = await agent.Users.getDetailsByEmail(email);
       runInAction('loading user details', () => {
         this.userDetails = userDetails;
+        this.studentId = userDetails.id;
       });
       this.loadingInitial = false;
     } catch (error) {

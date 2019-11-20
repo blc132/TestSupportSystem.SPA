@@ -7,9 +7,10 @@ import { ADMINISTRATOR_ROLE, LECTURER_ROLE, MAINLECTURER_ROLE, STUDENT_ROLE } fr
 
 interface IProps {
     exercise: IExerciseOverview
+    studentId: string
 }
 
-const ExerciseCard: React.FC<IProps> = ({ exercise }) => {
+const ExerciseSolvedCard: React.FC<IProps> = ({ exercise, studentId }) => {
 
     const rootStore = useContext(RootStoreContext);
     const { user } = rootStore.userStore;
@@ -18,15 +19,10 @@ const ExerciseCard: React.FC<IProps> = ({ exercise }) => {
 
     return (
         <Fragment>
-            <Card color="black">
+            <Card color="green">
                 <Card.Content>
-                    {user && user.role === STUDENT_ROLE && (
-                        <Card.Header as={Link} to={`/exercise/solve/${exercise.id}/group/${groupDetails!.id}`}>{exercise.name}</Card.Header>
-                    )}
-                    {user && (user.role === ADMINISTRATOR_ROLE || user.role === LECTURER_ROLE || user.role === MAINLECTURER_ROLE) && (
-                        <Fragment>
-                            <Card.Header color="black" as={Link} to={`/exercise/${exercise.id}`}>{exercise.name}</Card.Header>
-                        </Fragment>
+                    {user && (
+                        <Card.Header as={Link} to={`/exercise/solved/${exercise.id}/group/${groupDetails!.id}/user/${studentId}`}>{exercise.name}</Card.Header>
                     )}
                 </Card.Content>
             </Card>
@@ -34,4 +30,4 @@ const ExerciseCard: React.FC<IProps> = ({ exercise }) => {
     );
 };
 
-export default ExerciseCard;
+export default ExerciseSolvedCard;

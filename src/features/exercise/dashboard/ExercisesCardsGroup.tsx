@@ -1,7 +1,10 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useContext } from 'react';
 import { Card, Divider } from 'semantic-ui-react';
 import { IExerciseOverview } from '../../../app/models/exercise';
 import ExerciseCard from './ExerciseCard';
+import ExerciseSolvedCard from './ExerciseSolvedCard';
+import { IUser } from '../../../app/models/user';
+import { RootStoreContext } from '../../../app/stores/rootStore';
 
 interface IProps {
     exercises: IExerciseOverview[]
@@ -9,6 +12,8 @@ interface IProps {
 }
 
 const ExercisesCardsGroup: React.FC<IProps> = ({ exercises, courseName }) => {
+    const rootStore = useContext(RootStoreContext);
+    const { studentId } = rootStore.userStore;
     return (
         exercises.length === 0 ?
             <Fragment>
@@ -17,7 +22,8 @@ const ExercisesCardsGroup: React.FC<IProps> = ({ exercises, courseName }) => {
                 <Divider horizontal>{courseName}</Divider>
                 <Card.Group>
                     {exercises.map((exercise) => (
-                        <ExerciseCard exercise={exercise} />
+                        (exercise.solved && exercise.solved === true) ?
+                            <ExerciseSolvedCard exercise={exercise} studentId={studentId} /> : <ExerciseCard exercise={exercise} />
                     ))}
                 </Card.Group>
             </Fragment>
