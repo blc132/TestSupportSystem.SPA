@@ -45,7 +45,7 @@ const validate = combineValidators({
     firstName: isRequired({ message: 'Wymagane' }),
     lastName: isRequired({ message: 'Wymagane' }),
     role: isRequired({ message: "Wymagane" }),
-
+    confirmPassword: isRequired({ message: 'Wymagane' }),
     password: composeValidators(
         isRequired({ message: 'Wymagane' }),
         isValidPassword,
