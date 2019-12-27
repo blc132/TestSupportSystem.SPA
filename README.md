@@ -1,5 +1,5 @@
 # SysEgz
-### On-line system supporting tests for learning ofprogramming
+### On-line system supporting tests for learning of programming
 
 ## Table of contents
 * [General info](#general-info)
@@ -43,12 +43,13 @@ The system contains three main components: API for system management (API - Zarz
 
 ## Setup
 ### API for system management
-To launch the application, download the code from the GIT repository under the link: https://github.com/blc132/TestSupportSystem.API.
+To launch the application, download the code from the GIT repository under the link:  
+https://github.com/blc132/TestSupportSystem.API.
 
-For proper operation of the application you need the .NET Core 3.0 SDK:
+For proper operation of the application you need the .NET Core 3.0 SDK:  
 https://dotnet.microsoft.com/download/dotnet-core/3.0
 
-And Visual Studio Community/Professional/Enterprise 2019:
+And Visual Studio Community/Professional/Enterprise 2019:  
 https://visualstudio.microsoft.com/pl/vs/
 
 After installing the IDE and SDK, the downloaded project should be run by Visual Studio. The integrated development environment should automatically download the packages that are missing in the solution. Then in Package Manager Console, select Persistence project as default and enter two commands:
@@ -59,7 +60,7 @@ $ Update-Database
 Thanks to these commands the application should create a database which will be located on the local system server. ConnectionString to the database is located in project API in appsettings.json file.  After successful creation of API database for system management it should start working.
 
 ### Code Compilation System
-To start the application you must have downloaded Docker on your system.  Specific data about installing Docker on specific systems can be found on its main page:
+To start the application you must have downloaded Docker on your system.  Specific data about installing Docker on specific systems can be found on its main page:  
 https://www.docker.com/
 
 Then turn on the Docker's console and download the judge0/api:
@@ -84,10 +85,10 @@ $ ./scripts/run-workers
 After these commands, everything should work. You can check this by going to the documentation at http://www.XXX.XXX.XX.XXX:3000, where "XXX.XXX.XXX.XXX" means the IP on which the Docker is running. The Ip is displayed when the Docker starts up in the text: "docker is configured to use the default machine with IP XXX.XXX.XXX.XX.XXX".
 
 ### Client
-To run the client we need the code from the GIT repository:
+To run the client we need the code from the GIT repository:  
 https://github.com/blc132/TestSupportSystem.SPA 
 
-And also npm:
+And also npm:  
 https://nodejs.org/en/download/
 
 After downloading all the components, enter the folder of the downloaded GIT repository through the console:
