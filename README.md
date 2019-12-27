@@ -152,3 +152,9 @@ Thanks to these steps the system should be fully functional
 
 ![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/15%20Zle%20rozwiazane%20zadanie.png?raw=true)
 
+------------
+
+#### This project was written with ❤️.
+
+
+##### XD Driven Development
