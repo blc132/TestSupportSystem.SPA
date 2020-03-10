@@ -1,5 +1,5 @@
 import React, { useContext, Fragment } from 'react';
-import { Container, Segment, Header, Button, Image } from 'semantic-ui-react';
+import { Container, Segment, Header, Button, Image, Icon, Grid, Divider } from 'semantic-ui-react';
 import { RootStoreContext } from '../../app/stores/rootStore';
 import LoginForm from '../user/LoginForm';
 import RegisterForm from '../user/RegisterForm';
@@ -12,12 +12,9 @@ const LandingPage = () => {
     <Segment inverted textAlign='center' vertical className='masthead-landing'>
       <Container text>
         <Header as='h1' inverted>
-          <Image
-            size='massive'
-            src='/assets/logo.png'
-            alt='logo'
-            style={{ marginBottom: 12 }}
-          />
+          <Icon.Group size='small'>
+            <Icon name='code' />
+          </Icon.Group>
           SysEgz
         </Header>
         <Fragment>
@@ -31,8 +28,15 @@ const LandingPage = () => {
             Rejestracja
           </Button>
         </Fragment>
+        <Divider className='footer-divider' />
+        <Fragment>
+          <a title='Skontaktuj się z twórcą' target="_blank" rel="noopener noreferrer" href="https://www.kobrynsky.net">
+            <Icon inverted size='huge' name='user circle' />
+          </a>
+        </Fragment>
       </Container>
-    </Segment>
+    </Segment >
+
   );
 };
 

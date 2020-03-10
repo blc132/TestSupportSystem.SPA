@@ -1,39 +1,44 @@
 /*landing page styles*/
 
 .masthead-home {
-    display: flex;
-    align-items: center;
-    background: rgb(81,121,61);
-    background: linear-gradient(135deg, rgba(81,121,61,1) 0%, rgba(45,129,35,1) 48%, rgba(32,86,112,0.9780287114845938) 100%)!important;
-    height: 50vh;
-    border-radius: 5vh!important;
-  }
-  
-  .masthead-home .ui.menu .ui.button,
-  .ui.menu a.ui.inverted.button {
-    margin-left: 0.5em;
-  }
-  
-  .masthead-home h1.ui.header {
-    font-size: 4em;
-    font-weight: normal;
-  }
-  
-  .masthead-home h2 {
-    font-size: 1.7em;
-    font-weight: normal;
-  }
+  display: flex;
+  align-items: center;
+  background: rgb(81, 121, 61);
+  background: linear-gradient(
+    135deg,
+    rgba(81, 121, 61, 1) 0%,
+    rgba(45, 129, 35, 1) 48%,
+    rgba(32, 86, 112, 0.9780287114845938) 100%
+  ) !important;
+  height: 50vh;
+  border-radius: 5vh !important;
+}
 
-  .img-home{
-     border-radius: 5vh;
-  }
+.masthead-home .ui.menu .ui.button,
+.ui.menu a.ui.inverted.button {
+  margin-left: 0.5em;
+}
 
-  .column-home{
-    display: flex;
-    align-items: center;
-  }
-  
-  .column-home-desc{
-    margin-top: 5vh;
-  }
-  /*end landing page styles*/
+.masthead-home h1.ui.header {
+  font-size: 4em;
+  font-weight: normal;
+}
+
+.masthead-home h2 {
+  font-size: 1.7em;
+  font-weight: normal;
+}
+
+.img-home {
+  border-radius: 5vh;
+}
+
+.column-home {
+  display: flex;
+  align-items: center;
+}
+
+.column-home-desc {
+  margin-top: 5vh;
+}
+/*end landing page styles*/

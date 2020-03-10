@@ -7,7 +7,7 @@ import { ICourse } from '../models/course';
 import { IGroupFormValues, IGroup, IGroupDetails } from '../models/group';
 import { IAddExerciseFormValues, IExercise, IExerciseDetails, ISolveExerciseForm, ISolvedExerciseDetails } from '../models/exercise';
 
-axios.defaults.baseURL = "https://localhost:44323/api"
+axios.defaults.baseURL = "http://pawelkob-002-site1.itempurl.com/api"
 
 axios.interceptors.request.use(
   config => {
