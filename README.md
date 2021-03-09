@@ -13,7 +13,7 @@ Web application that facilitates the process of testing and exams in the field o
 
 The system contains three main components: API for system management (API - Zarządzanie systemem), code compilation system (API - Kompilator kodu) and client application (Klient). The diagram of the system is presented below:
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/Diagram.png?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/Diagram.png?raw=true)
 
 ## Technologies
 - API for system management:
@@ -44,7 +44,7 @@ The system contains three main components: API for system management (API - Zarz
 ## Setup
 ### API for system management
 To launch the application, download the code from the GIT repository under the link:  
-https://github.com/blc132/TestSupportSystem.API.
+https://github.com/kobrynsky/TestSupportSystem.API.
 
 For proper operation of the application you need the .NET Core 3.0 SDK:  
 https://dotnet.microsoft.com/download/dotnet-core/3.0
@@ -86,7 +86,7 @@ After these commands, everything should work. You can check this by going to the
 
 ### Client
 To run the client we need the code from the GIT repository:  
-https://github.com/blc132/TestSupportSystem.SPA 
+https://github.com/kobrynsky/TestSupportSystem.SPA 
 
 And also npm:  
 https://nodejs.org/en/download/
@@ -112,45 +112,45 @@ Thanks to these steps the system should be fully functional
 
 
 ## Screenshots
-![](https://raw.githubusercontent.com/blc132/TestSupportSystem.SPA/master/images/1%20Landing%20Page.PNG)
+![](https://raw.githubusercontent.com/kobrynsky/TestSupportSystem.SPA/master/images/1%20Landing%20Page.PNG)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/2%20Rejestracja.PNG?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/2%20Rejestracja.PNG?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/2_1%20Walidacja.PNG?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/2_1%20Walidacja.PNG?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/3%20Logowanie.PNG?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/3%20Logowanie.PNG?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/4%20Lista%20kursow.PNG?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/4%20Lista%20kursow.PNG?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/5%20Dodawanie%20kursu.PNG?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/5%20Dodawanie%20kursu.PNG?raw=true)
 
 
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/5_1%20Po%20dodaniu.PNG?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/5_1%20Po%20dodaniu.PNG?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/6%20Lista%20zadan.PNG?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/6%20Lista%20zadan.PNG?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/7%20Dodaj%20zadanie.png?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/7%20Dodaj%20zadanie.png?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/8%20Podglad%20zadania.png?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/8%20Podglad%20zadania.png?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/9%20Lista%20grup.png?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/9%20Lista%20grup.png?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/10%20Podglad%20grupy.png?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/10%20Podglad%20grupy.png?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/10_1%20Podglad%20grupy.png?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/10_1%20Podglad%20grupy.png?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/11%20Dodawanie%20studenta.png?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/11%20Dodawanie%20studenta.png?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/12%20Rozwiazywanie%20zadania.png?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/12%20Rozwiazywanie%20zadania.png?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/12_1%20Rozwiazanie%20zadania.png?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/12_1%20Rozwiazanie%20zadania.png?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/13%20Podglad%20grupy%20po%20zrobieniu%20zadania%20student.png?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/13%20Podglad%20grupy%20po%20zrobieniu%20zadania%20student.png?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/14%20Podlgad%20rozwiazanego%20zadania.png?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/14%20Podlgad%20rozwiazanego%20zadania.png?raw=true)
 
-![](https://github.com/blc132/TestSupportSystem.SPA/blob/master/images/15%20Zle%20rozwiazane%20zadanie.png?raw=true)
+![](https://github.com/kobrynsky/TestSupportSystem.SPA/blob/master/images/15%20Zle%20rozwiazane%20zadanie.png?raw=true)
 
 ------------
 
